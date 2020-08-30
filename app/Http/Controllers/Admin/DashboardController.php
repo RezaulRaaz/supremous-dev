@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Setting;
 
 class DashboardController extends Controller
 {
@@ -28,7 +29,7 @@ class DashboardController extends Controller
 
     public function products()
     {
-        return view('admin/pages/product_list');
+        return view('admin/pages/Product/product_list');
     }
 
     public function variations()
@@ -43,11 +44,12 @@ class DashboardController extends Controller
 
     public function setting()
     {
-        return view('admin/pages/settings');
+        $setting=Setting::orderBy('id', 'DESC')->first();
+        return view('admin/pages/settings',compact('setting'));
     }
 
     public function profile()
     {
-        return view('admin/pages/profile');
+        return view('admin/pages/profile/profile');
     }
 }

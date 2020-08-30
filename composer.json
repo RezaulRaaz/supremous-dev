@@ -15,8 +15,7 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.1",
-        "milon/barcode": "^7.0"
+        "laravel/ui": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -42,6 +41,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Helper/Helper.php"
         ]
     },
     "autoload-dev": {

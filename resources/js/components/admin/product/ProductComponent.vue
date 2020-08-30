@@ -55,9 +55,28 @@
                                         <input v-model="form.taxPerPiece" type="text" class="form-control" placeholder="Price" id="tax" aria-describedby="emailHelp">
                                     </div>
                                 </div>
+                                    <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="tax">Supplier Price</label>
+                                        <input v-model="form.supplierPrice" type="text" class="form-control" placeholder="Price" id="tax" aria-describedby="emailHelp">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                            <div class="card  mt-3">
+                <div class="card-body">
+                    <h4 class="header-title">Wight</h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="Sku">Product Weight</label>
+                                <input v-model="form.weight" type="text" class="form-control" placeholder="Gram" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <div class="card  mt-3">
                         <div class="card-body">
                             <h4 class="header-title">Inventory</h4>
@@ -96,10 +115,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="form-check form-check-inline">
-                                        <input  class="form-check-input" v-model="form.tracking" checked type="checkbox" id="track" value="option1">
-                                        <label class="form-check-label"  for="track">Track quantity</label>
-                                    </div>
+
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" v-model="form.continue" type="checkbox" id="continue" value="option1">
                                         <label class="form-check-label" for="continue">Continue selling when out of stock</label>
@@ -169,7 +185,7 @@
                             <div class="row">
                                 <div class="col-4">
                                  <span>
-                                    <select v-model="variationId" @change="att" class="form-control">
+                                    <select v-model="form.variationId" @change="att" class="form-control">
                                        <option value="">Select Variant..</option>
                                        <option v-for="variation in Variations" :value="variation.id">{{variation.name}}</option>
                                    </select>
@@ -214,10 +230,11 @@
                 images:[],
                 imagePreview:[],
                 shortDsc:false,
-                variationId:'',
                 options: [],
                 stock:['In Stock','Out Of Stock','On Backorder'],
                 form:{
+                    variationId:'',
+                    selectAttribute:null,
                     realeaseTime:'',
                     name:'',
                     description:'',
@@ -230,15 +247,15 @@
                     barcode:'',
                     quantity:0,
                     stockStatus:'In Stock',
-                    tracking:true,
-                    continue:false,
+                    continue:true,
                     publish:true,
                     categoryId:'',
                     subCategoryId:'',
                     brand:'',
                     yVideoLink:'',
-                    selected: null,
-                    newSlected:'',
+                    selected: [],
+                    supplierPrice: '',
+                    weight: null,
                 }
             }
         },
@@ -250,7 +267,6 @@
         mounted() {
 
         },
-
         methods:{
             dateTimee(e){
                alert(e)
@@ -268,17 +284,17 @@
                 this.$store.dispatch('getVariation')
             },
             getVariatiosAtt(){
-                this.$store.dispatch('getVariationAttribute',this.variationId)
+                this.$store.dispatch('getVariationAttribute',this.form.variationId)
             },
             att(){
-                axios.get('/admin/get/sub/variation/'+this.variationId)
+                axios.get('/admin/get/sub/variation/'+this.form.variationId)
                 .then((response) => {
                      this.options=[]
+                    this.stringfy;
                     response.data.attributeResult.map((getDa)=>{
                         return this.options.push(getDa.name);
                     });
-                     this.stringfy;
-                    this.form.selected=[];
+
              })
             },
             imageChange() {
@@ -286,11 +302,6 @@
                     this.images.push(this.$refs.files.files[i]);
                 }
             },
-
-
-
-
-
             addProduct(){
                 var self=this
                 let formData =new FormData();
@@ -311,21 +322,24 @@
                 formData.append('barcode',this.form.barcode)
                 formData.append('quantity',this.form.quantity)
                 formData.append('stockStatus',this.form.stockStatus)
+                formData.append('continue_selling',this.form.continue)
                 formData.append('status',this.form.publish)
-                formData.append('categoryId',this.form.categoryId)
                 formData.append('categoryId',this.form.categoryId)
                 formData.append('subCategoryId',this.form.subCategoryId)
                 formData.append('brand',this.form.brand)
+                formData.append('selectAttribute',this.form.selectAttribute)
+                formData.append('variationId',this.form.variationId)
+                formData.append('selected',this.form.selected)
                 formData.append('yVideoLink',this.form.yVideoLink)
-                formData.append('newSlected',this.form.newSlected)
-
+                formData.append('supplierPrice',this.form.supplierPrice)
+                formData.append('weight',this.form.weight)
 
                 const config ={
                     headers:{"content-type" : "multipart/form-data"}
                 }
                 axios.post('/admin/add/product',formData,config)
                     .then((response) => {
-                        console.log(response)
+                        this.$noty.success(response.data.success)
                     })
                     .catch((e) => {
                        console.log(e)
@@ -335,7 +349,7 @@
         },
         computed:{
             stringfy(){
-              return this.form.newSlected= JSON.stringify(this.form.selected)
+              return this.form.selectAttribute= JSON.stringify(this.form.selected)
 
             },
             brands(){

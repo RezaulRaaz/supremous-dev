@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Brand;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use File;
 
@@ -11,7 +11,7 @@ class BrandController extends Controller
 {
     public function index()
     {
-        $brand=Brand::orderBy('id', 'DESC')->get();;
+        $brand=Brand::orderBy('id', 'DESC')->get();
         return response()->json(['brands'=>$brand]);
     }
     public function store(Request $request)

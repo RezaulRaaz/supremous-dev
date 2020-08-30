@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
-
+use Illuminate\Support\Facades\Auth;
 class VerificationController extends Controller
 {
     /*
@@ -26,7 +26,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -38,5 +38,16 @@ class VerificationController extends Controller
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+        if (Auth::check() && Auth::user()->role->id==1){
+            $this->redirectTo=route('admin.dashboard');
+        }elseif (Auth::check() && Auth::user()->role->id==2){
+            $this->redirectTo=route('subadmin.dashboard');
+        }elseif (Auth::check() && Auth::user()->role->id==3){
+            $this->redirectTo=route('moderate.dashboard');
+        }elseif (Auth::check() && Auth::user()->role->id==4){
+            $this->redirectTo=route('customar.dashboard');
+        }else{
+            $this->redirectTo = route('login');
+        }
     }
 }

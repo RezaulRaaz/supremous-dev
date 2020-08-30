@@ -3,6 +3,8 @@ import Brand from './components/admin/BrandComponent'
 import Category from './components/admin/CategoryComponent'
 import Variation from './components/admin/VariationComponent'
 import ProductComponent from './components/admin/product/ProductComponent'
+import ProductlistComponent from './components/admin/product/ProductlistComponent'
+import ProducteditComponent from './components/admin/product/ProducteditComponent.vue'
 
 var components={
     'example-component':Example,
@@ -11,6 +13,8 @@ var components={
     'variation-component':Variation,
 
     'product-component':ProductComponent,
+    'list-component':ProductlistComponent,
+    'productedit-component':ProducteditComponent,
 }
 
 

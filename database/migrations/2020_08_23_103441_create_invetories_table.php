@@ -19,7 +19,7 @@ class CreateInvetoriesTable extends Migration
             $table->string('barcode')->nullable();
             $table->string('available');
             $table->string('total_sell')->nullable();
-            $table->string('track_sell')->nullable();
+            $table->string('weight')->nullable();
             $table->string('continue_selling')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

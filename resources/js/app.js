@@ -24,6 +24,9 @@ import VueConfirmDialog from 'vue-confirm-dialog'
 Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
+import Pagination from './components/admin/partial/PaginationComponent'
+Vue.component('pagination',Pagination)
+
 
 import components from "./allComponet";
 

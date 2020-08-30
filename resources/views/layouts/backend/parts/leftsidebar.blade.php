@@ -1,38 +1,34 @@
-<div class="sidebar-menu">
-    <div class="sidebar-header">
-        <div class="logo">
-            <a href="{{route('admin.dashboard')}}"><img src="{{asset('backend/assets/images/icon/logo.png')}}" alt="logo"></a>
-        </div>
+   <!-- BEGIN: Main Menu-->
+   <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+        <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('admin.dashboard')}}">
+        <img src="{{logo()}}" style="width:50%;height:40px;margin:0 auto">
+                </a></li>
+            <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i></a></li>
+        </ul>
     </div>
-    <div class="main-menu">
-        <div class="menu-inner">
-            <nav>
-                <ul class="metismenu" id="menu">
-                    <li class="@if(Route::is('admin.dashboard')) active @endif">
-                        <a href="{{route('admin.dashboard')}}" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
-                    </li>
-                    <li class="
-                        @if(Route::is('admin.new*')) active @endif
-                     ">
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-cart-arrow-down"></i><span>Items/Product</span></a>
-                        <ul class="collapse
-                            @if(Route::is('admin.new*')) in @endif
-                         ">
-                            <li class="@if(Route::is('admin.new.item')) active @endif"><a href="{{route('admin.new.item')}}">New Item/Product</a></li>
-                            <li class="@if(Route::is('admin.new.products')) active @endif"><a href="{{route('admin.new.products')}}">Products</a></li>
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
+        <ul  class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class="@if(Route::is('admin.dashboard')) active @endif nav-item"><a href="{{route('admin.dashboard')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a></li>
 
-                            <li class="@if(Route::is('admin.new.brands')) active @endif"><a href="{{route('admin.new.brands')}}">New Brands</a></li>
-                            <li class="@if(Route::is('admin.new.categories')) active @endif"><a href="{{route('admin.new.categories')}}">New Category</a></li>
-                        </ul>
+            <li class="nav-item has-sub  @if(Route::is('admin.new*')) sidebar-group-active @endif">
+                <a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Dashboard">Items/Product</span></a>
+                <ul class="menu-content">
+                    <li class="@if(Route::is('admin.new.item')) active @endif"><a href="{{route('admin.new.item')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">New Item/Product</span></a>
                     </li>
-                    <li class="@if(Route::is('admin.variations')) active @endif" >
-                        <a href="{{route('admin.variations')}}" aria-expanded="true"><i class="fa fa-asterisk"></i><span>Variations Specifics</span></a>
+                    <li class="@if(Route::is('admin.new.products')) active @endif"><a href="{{route('admin.new.products')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Products</span></a>
                     </li>
-                    <li class="@if(Route::is('admin.menu')) active @endif" >
-                        <a href="{{route('admin.menu')}}" aria-expanded="true"><i class="fa fa-align-left"></i><span>Menu</span></a>
+                     <li class="@if(Route::is('admin.new.brands')) active @endif"><a href="{{route('admin.new.brands')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">New Brands</span></a>
+                    </li>
+                     <li class="@if(Route::is('admin.new.categories')) active @endif"><a href="{{route('admin.new.categories')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Category</span></a>
                     </li>
                 </ul>
-            </nav>
-        </div>
+            </li>
+            <li class="@if(Route::is('admin.variations')) active @endif"><a href="{{route('admin.variations')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Variations Specifics</span></a></li>
+            <li class="@if(Route::is('admin.menu')) active @endif"><a href="{{route('admin.menu')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Menu</span></a></li>
+        </ul>
     </div>
 </div>
+<!-- END: Main Menu-->

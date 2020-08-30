@@ -19,6 +19,7 @@ class CreatePrdpricesTable extends Migration
             $table->string('special_price')->nullable();
             $table->string('cost_per_price')->nullable();
             $table->string('tax_per_price')->nullable();
+            $table->string('supplierPrice')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();

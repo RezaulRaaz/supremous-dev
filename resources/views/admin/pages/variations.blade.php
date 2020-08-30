@@ -1,6 +1,9 @@
 @extends('layouts.backend.app')
 @push('meta')
 @endpush
+@section('title', 'Page Title')
+@push('pagecss')
+@endpush
 @push('css')
 @endpush
 @section('content')
