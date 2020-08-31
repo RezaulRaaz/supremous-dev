@@ -11,6 +11,7 @@ route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::post('/add/product','ProductController@store')->name('add.product');
     Route::get('/get/products','ProductController@show')->name('get.product');
     Route::get('/edit/product/{id}','ProductController@edit')->name('edit.product');
+    Route::post('/update/product','ProductController@UpdateProduct')->name('update.product');
 
     Route::post('add/brand','BrandController@store')->name('add.brand');
     Route::get('get/brand','BrandController@index')->name('get.brand');

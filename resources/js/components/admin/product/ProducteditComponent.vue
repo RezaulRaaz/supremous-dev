@@ -133,8 +133,8 @@
                         <input v-model="updateForm.release_date" class="form-control" type="datetime-local"  id="example-datetime-local-input">
                     </div>
                     <div class="form-check form-check-inline">
-                        <input v-model="updateForm.publish_status" class="form-check-input" checked type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label"  for="inlineCheckbox1">Publish</label>
+                        <input v-model="updateForm.publish_status" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label"  for="inlineCheckbox1">Release</label>
                     </div>
                 </div>
             </div>
@@ -143,15 +143,14 @@
                     <h4 class="header-title">Category</h4>
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <select id="category" class="form-control">
+                        <select v-model="updateForm.categoryId" @change="getSubCategory()" id="category" class="form-control">
                             <option v-for="cat in category" :value="cat.id">{{cat.Category_name}}</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="subcategory">Sub Category</label>
-                        <select id="subcategory"  class="form-control">
-                            <option value="">Select Category..</option>
-                            <option  value=""></option>
+                        <select v-model="updateForm.subCategoryId" id="subcategory"  class="form-control">
+                            <option v-for="category in subCategory"  :value="category.id">{{category.Category_name}}</option>
                         </select>
                     </div>
                 </div>
@@ -161,9 +160,8 @@
                     <h4 class="header-title">Brands</h4>
                     <div class="form-group">
                         <label for="fd">Brands</label>
-                        <select id="fd" class="form-control">
-                            <option value="">Select Brand..</option>
-                            <option value="brand.id">fgfdgfd</option>
+                        <select v-model="updateForm.brandId" id="fd" class="form-control">
+                            <option v-for="brand in brands" :value="brand.id">{{brand.Brand_name}}</option>
                         </select>
                     </div>
                 </div>
@@ -173,8 +171,11 @@
                     <h4 class="header-title">Image</h4>
                     <div class="form-group">
                         <label for="img">Image</label>
-                        <input  multiple type="file" name="image" ref="files" class="form-control-file" id="img">
+                        <input @change="imageChange" multiple type="file" name="image" ref="files" class="form-control-file" id="img">
                     </div>
+                       <span v-for="(picture,i) in this.updateForm.pictures">
+                        <img :src="'/images/products/'+picture" width="100" height="100">
+                    </span>
                 </div>
             </div>
 
@@ -184,16 +185,19 @@
                     <div class="row">
                         <div class="col-4">
                          <span>
-                            <select  class="form-control">
-                               <option value="">Select Variant..</option>
-                               <option  value="variation.id">fgsfdg</option>
+                            <select v-model="updateForm.variantionId" @change="att"  class="form-control">
+                               <option v-for="variants in Variations"  :value="variants.id">{{variants.name}}</option>
                            </select>
                         </span>
                         </div>
                         <div class="col-6">
-                         <span>
-
-                        </span>
+                             <span>
+                                    <multiselect
+                                        v-model="updateForm.selected"
+                                        :multiple="true"
+                                        :options="options"
+                                    ></multiselect>
+                                </span>
                         </div>
 
                     </div>
@@ -204,10 +208,11 @@
                     <h4 class="header-title">Video</h4>
                     <div class="form-group">
                         <label for="video">Product review Youtube Video Link (optional)</label>
-                        <input type="text" class="form-control" id="video">
+                        <input v-model="updateForm.ylink" type="text" class="form-control" id="video">
                     </div>
                 </div>
             </div>
+               <button @click="ProductUpdate" class="btn mt-3 float-right btn-primary">Save</button>
         </div>
     </div>
     </div>
@@ -220,12 +225,18 @@ export default {
         'price',
         'inventory',
         'category',
-        'release'
+        'release',
+        'categoryprd',
+        'prdbrand',
+        'prdvairiants'
     ],
     data(){
         return {
             stock:['In Stock','Out Of Stock','On Backorder'],
+            options:[],
+            images:[],
             updateForm:{
+                id:this.product.id,
                 name:this.product.product_name,
                 description:this.product.description,
                 short_description:this.product.short_description,
@@ -242,17 +253,134 @@ export default {
                 stock:this.product.stock_status,
                 publish_status:this.product.publish_status,
                 release_date:this.release.release_date,
-            }
+                categoryId:this.categoryprd.category_id,
+                subCategoryId:this.categoryprd.subcategory_id,
+                brandId:this.prdbrand.brand_id,
+                variantionId :this.prdvairiants.variantion_id ,
+                selected:[],
+                varitaion_attribute:'',
+                images:this.product.images,
+                ylink:this.product.youtube_link,
+                pictures:[],
+
+            },
         }
     },
-    created() {
-
+    mounted() {
+            this.getSubCategory()
+            this.getBrand();
+            this.getVariation();
+            this.att();
+            this.variatnsParse();
+            this.imageParse();
     },
-    method:{
+    methods:{
+          getSubCategory(){
+                this.$store.dispatch('getSubCategory',this.updateForm.categoryId)
+            },
+            getBrand() {
+                this.$store.dispatch('getBrand')
+            },
+              getVariation(){
+                this.$store.dispatch('getVariation')
+            },
+            att(){
+                axios.get('/admin/get/sub/variation/'+this.updateForm.variantionId)
+                .then((response) => {
+                     this.options=[],
+                     this.finalvariants
+                    response.data.attributeResult.map((getDa)=>{
+                        return this.options.push(getDa.name);
+                    });
+                 })
+            },
+            variatnsParse(){
+               this.updateForm.varitaion_attribute= this.prdvairiants.variants_attribute;
+            },
+             imageParse(){
+               this.updateForm.pictures= JSON.parse(this.updateForm.images);
+            },
+            imageChange() {
+                 for (let i = 0; i < this.$refs.files.files.length; i++) {
+                this.images.push(this.$refs.files.files[i]);
+            }
+            },
+            ProductUpdate(){
+                var self=this
+                let formData =new FormData();
+                for (let i=0;i<this.images.length;i++){
+                    let file = self.images[i];
+                    formData.append('files['+i+']',file);
+                }
+                formData.append('id',this.updateForm.id)
+                formData.append('ProductName',this.updateForm.name)
+                formData.append('description',this.updateForm.description)
+                formData.append('shortDsc',this.updateForm.short_description)
+                formData.append('yVideoLink',this.updateForm.ylink)
+                formData.append('status',this.updateForm.publish_status)
+                formData.append('stockStatus',this.updateForm.stock)
 
+                formData.append('regularPrice',this.updateForm.regular_price)
+                formData.append('specialPrice',this.updateForm.special_price)
+                formData.append('costPerPiece',this.updateForm.cost_per_price)
+                formData.append('taxPerPiece',this.updateForm.tax_per_price)
+                formData.append('supplierPrice',this.updateForm.supplier_price)
+
+                formData.append('Sku',this.updateForm.sku)
+                formData.append('barcode',this.updateForm.barcode)
+                formData.append('quantity',this.updateForm.available)
+                formData.append('weight',this.updateForm.weight)
+                formData.append('continue_selling',this.updateForm.continue_selling)
+
+                formData.append('realeaseTime',this.updateForm.release_date)
+
+                formData.append('categoryId',this.updateForm.categoryId)
+                formData.append('subCategoryId',this.updateForm.subCategoryId)
+
+                formData.append('brand',this.updateForm.brandId)
+
+                formData.append('variationId',this.updateForm.variantionId)
+                formData.append('selected',this.updateForm.selected)
+
+
+                const config ={
+                    headers:{"content-type" : "multipart/form-data"}
+                }
+                axios.post('/admin/update/product',formData,config)
+                    .then((response) => {
+                        this.$noty.success(response.data.success)
+                    })
+                    .catch((e) => {
+                       console.log(e)
+                    });
+            }
     },
     computed:{
-
+        finalvariants(){
+            let fin = this.updateForm.varitaion_attribute;
+            return this.updateForm.selected = fin.split(",");
+        },
+        subCategory(){
+                return this.$store.getters.SubCategory
+        },
+        brands(){
+                return this.$store.getters.brands
+        },
+        Variations(){
+            return this.$store.getters.Variations
+        },
     }
 }
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style scoped>
+    .multiselect {
+        box-sizing: content-box;
+        display: block;
+        position: relative;
+        width: 200px;
+        min-height: 40px;
+        text-align: left;
+        color: #35495e;
+    }
+</style>

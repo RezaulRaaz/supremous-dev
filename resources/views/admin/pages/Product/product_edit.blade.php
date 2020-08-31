@@ -15,6 +15,9 @@
     :inventory="{{$inventory}}"
     :release="{{$release}}"
     :category="{{$category}}"
+    :categoryprd="{{$prdCategory}}"
+    :prdbrand="{{$prdbrand}}"
+    :prdvairiants="{{$prdvairiants}}"
 ></productedit-component>
 @endsection
 @push('pagejs')

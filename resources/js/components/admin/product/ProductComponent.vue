@@ -192,6 +192,7 @@
                                 </span>
                                 </div>
                                 <div class="col-6">
+
                                  <span>
                                      <multiselect
                                          v-model="form.selected"
@@ -318,6 +319,7 @@
                 formData.append('specialPrice',this.form.specialPrice)
                 formData.append('costPerPiece',this.form.costPerPiece)
                 formData.append('taxPerPiece',this.form.taxPerPiece)
+                formData.append('supplierPrice',this.form.supplierPrice)
                 formData.append('Sku',this.form.Sku)
                 formData.append('barcode',this.form.barcode)
                 formData.append('quantity',this.form.quantity)
@@ -331,7 +333,6 @@
                 formData.append('variationId',this.form.variationId)
                 formData.append('selected',this.form.selected)
                 formData.append('yVideoLink',this.form.yVideoLink)
-                formData.append('supplierPrice',this.form.supplierPrice)
                 formData.append('weight',this.form.weight)
 
                 const config ={
@@ -349,8 +350,7 @@
         },
         computed:{
             stringfy(){
-              return this.form.selectAttribute= JSON.stringify(this.form.selected)
-
+               return this.form.selectAttribute = this.form.selected+' ';
             },
             brands(){
                  return this.$store.getters.brands
