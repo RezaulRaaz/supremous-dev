@@ -33,6 +33,9 @@ route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
 
     Route::get('/setting', 'DashboardController@setting')->name('setting');
     Route::post('/add/setting/{id}', 'SettingsController@store')->name('add.setting');
+    Route::get('/settings/social','SettingsController@Social' )->name('settings.social');
+
+    Route::post('/settings/social/add','SettingsController@addStore' )->name('add.social');
 
 
 

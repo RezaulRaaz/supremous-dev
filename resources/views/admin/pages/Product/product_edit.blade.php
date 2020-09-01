@@ -16,7 +16,7 @@
     :release="{{$release}}"
     :category="{{$category}}"
     :categoryprd="{{$prdCategory}}"
-    :prdbrand="{{$prdbrand}}"
+    :prdbrand="{{ $prdbrand}}"
     :prdvairiants="{{$prdvairiants}}"
 ></productedit-component>
 @endsection

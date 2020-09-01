@@ -5,6 +5,7 @@ import Variation from './components/admin/VariationComponent'
 import ProductComponent from './components/admin/product/ProductComponent'
 import ProductlistComponent from './components/admin/product/ProductlistComponent'
 import ProducteditComponent from './components/admin/product/ProducteditComponent.vue'
+import SocialComponent from './components/admin/settings/SocialComponent.vue'
 
 var components={
     'example-component':Example,
@@ -15,6 +16,9 @@ var components={
     'product-component':ProductComponent,
     'list-component':ProductlistComponent,
     'productedit-component':ProducteditComponent,
+
+
+    'social-component':SocialComponent,
 }
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Setting;
+use App\Model\Social;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use File;
@@ -60,5 +61,21 @@ class SettingsController extends Controller
         $setting->save();
         return redirect()->back();
 
+    }
+
+    public function Social(){
+        $social=Social::orderBy('id', 'DESC')->first();
+        return response()->json(['social'=>$social]);
+    }
+    public function addStore(Request $request){
+
+        $social = Social::find($request->id);
+        $social->facebook_links=$request->facebook;
+        $social->twitter_links=$request->twitter;
+        $social->instagram_links=$request->instagram;
+        $social->linked_links=$request->linked;
+        $social->youtube_links=$request->youtube;
+        $social->save();
+        return response()->json(['success'=>'Success fully Updated']);
     }
 }

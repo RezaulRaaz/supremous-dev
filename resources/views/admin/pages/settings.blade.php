@@ -280,51 +280,7 @@
                                         </form>
                                     </div>
                                     <div class="tab-pane fade " id="account-vertical-social" role="tabpanel" aria-labelledby="account-pill-social" aria-expanded="false">
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="account-twitter">Twitter</label>
-                                                        <input type="text" id="account-twitter" class="form-control" placeholder="Add link" value="https://www.twitter.com">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="account-facebook">Facebook</label>
-                                                        <input type="text" id="account-facebook" class="form-control" placeholder="Add link">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="account-google">Google+</label>
-                                                        <input type="text" id="account-google" class="form-control" placeholder="Add link">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="account-linkedin">LinkedIn</label>
-                                                        <input type="text" id="account-linkedin" class="form-control" placeholder="Add link" value="https://www.linkedin.com">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="account-instagram">Instagram</label>
-                                                        <input type="text" id="account-instagram" class="form-control" placeholder="Add link">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="account-quora">Quora</label>
-                                                        <input type="text" id="account-quora" class="form-control" placeholder="Add link">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                    <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                        changes</button>
-                                                    <button type="reset" class="btn btn-outline-warning">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                       <social-component></social-component>
                                     </div>
                                     <div class="tab-pane fade" id="account-vertical-connections" role="tabpanel" aria-labelledby="account-pill-connections" aria-expanded="false">
                                         <div class="row">

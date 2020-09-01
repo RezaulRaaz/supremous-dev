@@ -51,32 +51,8 @@
                                 </td>
                                 <td>
                                     <a href="#" @click="editClick('click brand')"><span class="badge badge-secondary">Edit</span></a>
-                                    <a href="#" data-toggle="modal" data-target="#danger"><span class="badge badge-danger">X</span></a>
+                                    <a href="#" @click.prevent="handleClick(Brand.id,index)"><span class="badge badge-danger">X</span></a>
                                 </td>
-                            <div class="modal-danger mr-1 mb-1 d-inline-block">
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="danger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel120" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-danger white">
-                                                    <h5 class="modal-title" id="myModalLabel120">Warning!!</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                        Are you sure you want to Delete this?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" @click.prevent="handleClick(Brand.id,index)" class="btn btn-danger" data-dismiss="modal">Yes</button>
-                                                    <button type="button" aria-label="Close" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
                             </tr>
                             </tbody>
                         </table>
