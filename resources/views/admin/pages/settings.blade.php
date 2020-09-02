@@ -3,6 +3,7 @@
 @endpush
 @section('title', 'Setiings')
 @push('pagecss')
+<link rel="stylesheet" type="text/css" href="{{asset('backendAsset/app-assets/vendors/css/forms/select/select2.min.css')}}">
 <!-- BEGIN: Vendor CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('backendAsset/app-assets/vendors/css/vendors.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('backendAsset/app-assets/vendors/css/forms/select/select2.min.css')}}">
@@ -153,130 +154,12 @@
                                     </div>
                                     <div class="tab-pane fade " id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
                                         <form novalidate>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <div class="controls">
-                                                            <label for="account-old-password">Old Password</label>
-                                                            <input type="password" class="form-control" id="account-old-password" required placeholder="Old Password" data-validation-required-message="This old password field is required">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <div class="controls">
-                                                            <label for="account-new-password">New Password</label>
-                                                            <input type="password" name="password" id="account-new-password" class="form-control" placeholder="New Password" required data-validation-required-message="The password field is required" minlength="6">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <div class="controls">
-                                                            <label for="account-retype-new-password">Retype New
-                                                                Password</label>
-                                                            <input type="password" name="con-password" class="form-control" required id="account-retype-new-password" data-validation-match-match="password" placeholder="New Password" data-validation-required-message="The Confirm password field is required" minlength="6">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                    <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                        changes</button>
-                                                    <button type="reset" class="btn btn-outline-warning">Cancel</button>
-                                                </div>
-                                            </div>
+                                           <password-component></password-component>
                                         </form>
                                     </div>
                                     <div class="tab-pane fade" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info" aria-expanded="false">
                                         <form novalidate>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="accountTextarea">Bio</label>
-                                                        <textarea class="form-control" id="accountTextarea" rows="3" placeholder="Your Bio data here..."></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <div class="controls">
-                                                            <label for="account-birth-date">Birth date</label>
-                                                            <input type="text" class="form-control birthdate-picker" required placeholder="Birth date" id="account-birth-date" data-validation-required-message="This birthdate field is required">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="accountSelect">Country</label>
-                                                        <select class="form-control" id="accountSelect">
-                                                            <option>USA</option>
-                                                            <option>India</option>
-                                                            <option>Canada</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="languageselect2">Languages</label>
-                                                        <select class="form-control" id="languageselect2" multiple="multiple">
-                                                            <option value="English" selected>English</option>
-                                                            <option value="Spanish">Spanish</option>
-                                                            <option value="French">French</option>
-                                                            <option value="Russian">Russian</option>
-                                                            <option value="German">German</option>
-                                                            <option value="Arabic" selected>Arabic</option>
-                                                            <option value="Sanskrit">Sanskrit</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <div class="controls">
-                                                            <label for="account-phone">Phone</label>
-                                                            <input type="text" class="form-control" id="account-phone" required placeholder="Phone number" value="(+656) 254 2568" data-validation-required-message="This phone number field is required">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="account-website">Website</label>
-                                                        <input type="text" class="form-control" id="account-website" placeholder="Website address">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="musicselect2">Favourite Music</label>
-                                                        <select class="form-control" id="musicselect2" multiple="multiple">
-                                                            <option value="Rock">Rock</option>
-                                                            <option value="Jazz" selected>Jazz</option>
-                                                            <option value="Disco">Disco</option>
-                                                            <option value="Pop">Pop</option>
-                                                            <option value="Techno">Techno</option>
-                                                            <option value="Folk" selected>Folk</option>
-                                                            <option value="Hip hop">Hip hop</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="moviesselect2">Favourite movies</label>
-                                                        <select class="form-control" id="moviesselect2" multiple="multiple">
-                                                            <option value="The Dark Knight" selected>The Dark Knight
-                                                            </option>
-                                                            <option value="Harry Potter" selected>Harry Potter</option>
-                                                            <option value="Airplane!">Airplane!</option>
-                                                            <option value="Perl Harbour">Perl Harbour</option>
-                                                            <option value="Spider Man">Spider Man</option>
-                                                            <option value="Iron Man" selected>Iron Man</option>
-                                                            <option value="Avatar">Avatar</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                    <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                        changes</button>
-                                                    <button type="reset" class="btn btn-outline-warning">Cancel</button>
-                                                </div>
-                                            </div>
+                                        <info-component></info-component>
                                         </form>
                                     </div>
                                     <div class="tab-pane fade " id="account-vertical-social" role="tabpanel" aria-labelledby="account-pill-social" aria-expanded="false">
@@ -378,6 +261,9 @@
         <!-- account setting page end -->
 @endsection
 @push('pagejs')
+  <!-- BEGIN: Page Vendor JS-->
+    <script src="{{asset('backendAsset/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+  <!-- END: Page Vendor JS-->
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('backendAsset/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
     <script src="{{ asset('backendAsset/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
@@ -389,5 +275,9 @@
 @push('js')
     <!-- BEGIN: Page JS-->
     <script src="{{asset('backendAsset/app-assets/js/scripts/pages/account-setting.js')}}"></script>
+    <!-- END: Page JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{{asset('backendAsset/app-assets/js/scripts/forms/select/form-select2.js')}}"></script>
     <!-- END: Page JS-->
 @endpush

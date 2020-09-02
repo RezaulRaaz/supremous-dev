@@ -19,13 +19,14 @@ import 'vuejs-noty/dist/vuejs-noty.css'
 import Multiselect from 'vue-multiselect'
 Vue.component('multiselect', Multiselect)
 
+import vSelect from 'vue-select'
+Vue.component('v-select', vSelect)
+import 'vue-select/dist/vue-select.css';
+
 
 import VueConfirmDialog from 'vue-confirm-dialog'
 Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
-
-import Pagination from './components/admin/partial/PaginationComponent'
-Vue.component('pagination',Pagination)
 
 
 import components from "./allComponet";

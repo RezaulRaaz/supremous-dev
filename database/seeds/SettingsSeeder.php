@@ -23,5 +23,9 @@ class SettingsSeeder extends Seeder
             'store_logo'=>'dsfasdf',
 
         ]);
+        DB::table('infos')->insert([
+            'country'=>'Bangladesh',
+            'currency'=>'৳',
+        ]);
     }
 }

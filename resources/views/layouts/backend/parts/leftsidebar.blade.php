@@ -27,7 +27,7 @@
                 </ul>
             </li>
             <li class="@if(Route::is('admin.variations')) active @endif"><a href="{{route('admin.variations')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Variations Specifics</span></a></li>
-            <li class="@if(Route::is('admin.menu')) active @endif"><a href="{{route('admin.menu')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Menu</span></a></li>
+            <li class="@if(Route::is('admin.menu')) active @endif"><a href="{{route('admin.menu')}}"><i class="feather icon-align-left"></i><span class="menu-title" data-i18n="Dashboard">Menu</span></a></li>
         </ul>
     </div>
 </div>

@@ -310,7 +310,6 @@
                     let file = self.images[i];
                     formData.append('files['+i+']',file);
                 }
-
                 formData.append('ProductName',this.form.name)
                 formData.append('realeaseTime',this.form.realeaseTime)
                 formData.append('description',this.form.description)
@@ -334,7 +333,6 @@
                 formData.append('selected',this.form.selected)
                 formData.append('yVideoLink',this.form.yVideoLink)
                 formData.append('weight',this.form.weight)
-
                 const config ={
                     headers:{"content-type" : "multipart/form-data"}
                 }

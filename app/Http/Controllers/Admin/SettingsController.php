@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Setting;
 use App\Model\Social;
+use App\Model\Info;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Hash;
 use File;
 
 class SettingsController extends Controller
@@ -68,7 +71,6 @@ class SettingsController extends Controller
         return response()->json(['social'=>$social]);
     }
     public function addStore(Request $request){
-
         $social = Social::find($request->id);
         $social->facebook_links=$request->facebook;
         $social->twitter_links=$request->twitter;
@@ -77,5 +79,35 @@ class SettingsController extends Controller
         $social->youtube_links=$request->youtube;
         $social->save();
         return response()->json(['success'=>'Success fully Updated']);
+    }
+
+    public function info(Request $request){
+        $info=Info::find(1);
+        $info->country=$request->country;
+        $info->currency=$request->currency;
+        $info->save();
+        return response()->json(['success'=>'Success fully Add']);
+    }
+
+    public function getinfo(){
+        $info=Info::where('id',1)->first();
+        return response()->json(['info'=>$info]);
+    }
+
+    public function Changepassword(Request $request){
+        $this->validate($request,[
+            'Confirm_passord'=>'required',
+        ]);
+        $user = User::find(Auth::user()->id);
+        $password =$request->password;
+        $Confirm_passord =$request->Confirm_passord;
+        if($password==$Confirm_passord){
+            $user->password = Hash::make($Confirm_passord);
+            if($user->save()){
+                return response()->json(['success'=>'Success fully Password Changed']);
+            }
+        }else{
+            return response()->json(['notmatched'=>'Password Not Matched']);
+        }
     }
 }
