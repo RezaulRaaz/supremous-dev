@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','FrontendController@welcome')->name('welcome');
+Route::get('/products/{productName}/{id}','FrontendController@productDetails')->name('product');
 
 Auth::routes();
+
+
+
+
+
 route::group(['as'=>'customar.','prefix'=>'customar','namespace'=>'Customar','middleware' => ['auth','customar']], function (){
     Route::get('/dashboard', 'CustomarController@index')->name('dashboard');
 });

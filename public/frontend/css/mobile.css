@@ -1,0 +1,52 @@
+.mobile-menu-top-bar{
+    width: 100%;
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    visibility: hidden;
+}
+.mobile-top-grid{
+    padding: 15px 20px;
+    display: grid;
+    grid-template-columns:auto auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+.mobile-logo{
+    width: 70px;
+    height: 20px;
+}
+.mobile-logo img{
+    width: 100%;
+}
+.humberger-menu{
+    font-size: 29px;
+}
+
+/* botoom bar */
+.mobile-menu-bottom-bar{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    bottom: 0;
+    visibility: hidden;
+    left: 0;
+    z-index: 99;
+    font-size: 20px;
+}
+.mobile-bottom-grid{
+    padding: 0px 20px;
+    display: grid;
+    grid-template-columns:auto auto auto auto auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+.home-icon a{
+    color: #000;
+}

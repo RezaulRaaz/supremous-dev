@@ -1,6 +1,8 @@
 <?php
 
 use App\Model\Setting;
+use App\Model\Social;
+use App\Model\Info;
 
 function imgPath($imgName){
     return asset('images/'.$imgName);
@@ -17,4 +19,17 @@ function favIcon(){
 function StoreName(){
     $name=Setting::find(1);
     return $name->Store_name;
+}
+
+function Store(){
+    $store=Setting::find(1);
+    return $store;
+}
+function currency(){
+    $info=Info::find(1);
+    return $info->currency;
+}
+function social(){
+    $Social=Social::find(1);
+    return $Social;
 }

@@ -110,7 +110,7 @@
                                     <div class="form-group">
                                         <label for="sr">Stock status</label>
                                         <select v-model="form.stockStatus" id="sr" class="form-control">
-                                            <option v-for="stocks in stock" :value="stocks">{{stocks}}</option>
+                                            <option v-for="stocks in stock" :value="stocks" :key="stocks">{{stocks}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -133,12 +133,20 @@
                                 <label for="example-datetime-local-input" class="col-form-label">Date and time</label>
                                 <input  v-model="form.realeaseTime" class="form-control" type="datetime-local"  id="example-datetime-local-input">
                             </div>
+                             <div class="form-group">
+                                <label for="subcategory">Slect Position</label>
+                                <select v-model="form.positionSelect" class="form-control">
+                                    <option v-for="pos in position" :value="pos" :key="pos">{{pos}}</option>
+
+                                </select>
+                            </div>
                             <div class="form-check form-check-inline">
                                 <input v-model="form.publish" class="form-check-input" checked type="checkbox" id="inlineCheckbox1" value="option1">
                                 <label class="form-check-label"  for="inlineCheckbox1">Publish</label>
                             </div>
                         </div>
                     </div>
+
                     <div class="card mt-3">
                         <div class="card-body">
                             <h4 class="header-title">Category</h4>
@@ -146,14 +154,14 @@
                                 <label for="category">Category</label>
                                 <select v-model="form.categoryId" id="category" @change="getSubCategory" class="form-control">
                                     <option value="">Select Category..</option>
-                                    <option v-for="category in categories" :value="category.id">{{category.Category_name}}</option>
+                                    <option v-for="category in categories" :value="category.id" :key="category.id">{{category.Category_name}}</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="subcategory">Sub Category</label>
                                 <select id="subcategory" v-model="form.subCategoryId" class="form-control">
                                     <option value="">Select Category..</option>
-                                    <option v-for="subCategories in subCategory" :value="subCategories.id" >{{subCategories.Category_name}}</option>
+                                    <option v-for="subCategories in subCategory" :key="subCategories.id" :value="subCategories.id" >{{subCategories.Category_name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -165,7 +173,7 @@
                                 <label for="fd">Brands</label>
                                 <select id="fd" v-model="form.brand" class="form-control">
                                     <option value="">Select Brand..</option>
-                                    <option v-for="brand in brands" :value="brand.id">{{brand.Brand_name}}</option>
+                                    <option v-for="brand in brands" :key="brand.id" :value="brand.id">{{brand.Brand_name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -187,7 +195,7 @@
                                  <span>
                                     <select v-model="form.variationId" @change="att" class="form-control">
                                        <option value="">Select Variant..</option>
-                                       <option v-for="variation in Variations" :value="variation.id">{{variation.name}}</option>
+                                       <option v-for="variation in Variations" :key="variation.id" :value="variation.id">{{variation.name}}</option>
                                    </select>
                                 </span>
                                 </div>
@@ -233,6 +241,7 @@
                 shortDsc:false,
                 options: [],
                 stock:['In Stock','Out Of Stock','On Backorder'],
+                position:['Fetured','Newest','Popular'],
                 form:{
                     variationId:'',
                     selectAttribute:null,
@@ -244,6 +253,7 @@
                     specialPrice:'',
                     costPerPiece:'',
                     taxPerPiece:'',
+                    positionSelect:'Newest',
                     Sku:'',
                     barcode:'',
                     quantity:0,
@@ -333,6 +343,7 @@
                 formData.append('selected',this.form.selected)
                 formData.append('yVideoLink',this.form.yVideoLink)
                 formData.append('weight',this.form.weight)
+                formData.append('positionSelect',this.form.positionSelect)
                 const config ={
                     headers:{"content-type" : "multipart/form-data"}
                 }

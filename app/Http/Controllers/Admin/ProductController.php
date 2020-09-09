@@ -12,6 +12,7 @@ use App\Model\Prdvariant;
 use App\Model\Product;
 use App\Model\Category;
 use App\Model\Subcategory;
+use App\Model\Prdposition;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductCollection;
 
@@ -82,6 +83,12 @@ class ProductController extends Controller
                     $PrdVariant->variants_attribute=json_encode($request->selected);
                     $PrdVariant->product_id=$product->id;
                     $PrdVariant->save();
+                }
+                if(!empty($request->positionSelect)){
+                    $prdposition= new Prdposition();
+                    $prdposition->position=$request->positionSelect;
+                    $prdposition->product_id=$product->id;
+                    $prdposition->save();
                 }
              return response()->json(['success'=>'Success fully added']);
             }

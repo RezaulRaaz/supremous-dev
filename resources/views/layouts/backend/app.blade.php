@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-<!-- BEGIN: Head-->
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="PIXINVENT">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @stack('meta')
-<title>{{StoreName()}}-@yield('title')</title>
-<link rel="apple-touch-icon" href="{{favIcon()}}">
-<link rel="shortcut icon" type="image/x-icon" href="{{favIcon()}}">
+    <title>{{StoreName()}}-@yield('title')</title>
+    <link rel="apple-touch-icon" href="{{favIcon()}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{favIcon()}}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}

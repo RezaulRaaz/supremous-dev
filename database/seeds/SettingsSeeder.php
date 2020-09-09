@@ -27,5 +27,12 @@ class SettingsSeeder extends Seeder
             'country'=>'Bangladesh',
             'currency'=>'৳',
         ]);
+        DB::table('socials')->insert([
+            'facebook_links'=>'https://www.facebook.com/',
+            'twitter_links'=>'https://twitter.com/',
+            'linked_links'=>'https://www.linkedin.com/',
+            'instagram_links'=>'https://www.instagram.com/',
+            'youtube_links'=>'https://www.youtube.com/',
+        ]);
     }
 }

@@ -1,102 +1,151 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+@extends('layouts.app')
+@section('content')
+@include('layouts.frontend.parts.slider')
+   <!-- product section start -->
+   <div class="product">
+    <div class="container">
+        <div class="product-top d-flex align-items-center justify-content-between">
+            <div class="product-top-left">
+                <p>Selected just for you</p>
+            </div>
+            <div class="product-top-right">
+                <div class="product-top-right-btn">
+                    Show More
                 </div>
-            @endif
-
-            <a class="dropdown-item" href="{{ route('logout') }}"
-            onclick="event.preventDefault();
-                                          document.getElementById('logout-form').submit();"
-         ><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
-         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-             @csrf
-         </form>
-
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Supremous<br>
-                    <br>
-
-                </div>
-
-
             </div>
         </div>
-    </body>
-</html>
+        <div class="space-gap"></div>
+        <div class="product-card-area">
+            <div class="owl-carousel selected-product">
+             @foreach($products as $product)
+                @if($product->prdPosition->position=='Fetured')
+                <div class="product-card">
+                <a href="{{url('products/'.$product->product_name.'/'.$product->id)}}">
+                    <div class="product-img">
+                    <img src="{{asset('images/products/'.json_decode($product->images)[0])}}" alt="">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-name">
+                        <p>{{$product->product_name}}</p>
+                        </div>
+                        <div class="product-price">
+                            <span class="product-selling-price text-danger">{{currency()}}{{$product->prdPrice->special_price}}</span>
+                            <del><span class="product-regular-price">{{currency()}}{{$product->prdPrice->regular_price}}</span></del>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                @endif
+              @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space-gap"></div>
+  <!-- why Chose us start here -->
+  <div class="why-chose-us">
+    <div class="container">
+        <div class="top-section text-center">
+            <p>Why should you choose us?</p>
+        </div>
+        <div class="space-gap"></div>
+        <div class="why-choose-us-area">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="why-choose-us-content">
+                        <div class="why-choose-us-icon">
+                            <span class="material-icons">
+                                local_shipping
+                            </span>
+                        </div>
+                        <div class="why-choose-us-details">
+                            <h5>Free Shipping</h5>
+                            <p>All purchases over $199 are eligible for free shipping via USPS first Class Mail.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="why-choose-us-content">
+                        <div class="why-choose-us-icon">
+                            <span class="material-icons">
+                                attach_money
+                            </span>
+                        </div>
+                        <div class="why-choose-us-details">
+                            <h5>Easy Payments</h5>
+                            <p>All purchases over $199 are eligible for free shipping via USPS first Class Mail.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="why-choose-us-content">
+                        <div class="why-choose-us-icon">
+                            <span class="material-icons">
+                                security
+                            </span>
+                        </div>
+                        <div class="why-choose-us-details">
+                            <h5>Mony-Back-Guarante</h5>
+                            <p>All purchases over $199 are eligible for free shipping via USPS first Class Mail.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="why-choose-us-content">
+                        <div class="why-choose-us-icon">
+                            <span class="material-icons">
+                                toys
+                            </span>
+                        </div>
+                        <div class="why-choose-us-details">
+                            <h5>Finest Quality</h5>
+                            <p>All purchases over $199 are eligible for free shipping via USPS first Class Mail.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="space-gap"></div>
+<div class="product">
+    <div class="container">
+        <div class="product-top text-center">
+            <div class="product-top-left">
+                <p>Products in today</p>
+            </div>
+        </div>
+        <div class="space-gap"></div>
+        <div class="product-card-area">
+            <div class="owl-carousel product-in-today">
+                @foreach($products as $product)
+                @if($product->prdPosition->position=='Newest')
+                    <div class="product-card">
+                        <a href="{{url('products/'.$product->product_name.'/'.$product->id)}}">
+                        <div class="product-img">
+                            <img src="{{asset('images/products/'.json_decode($product->images)[0])}}" alt="">
+                        </div>
+                        <div class="product-details">
+                            <div class="product-name">
+                                <p>{{$product->product_name}}</p>
+                            </div>
+                            <div class="product-price">
+                                <span class="product-selling-price text-danger">{{currency()}}{{$product->prdPrice->special_price}}</span>
+                               <del> <span class="product-regular-price">{{currency()}}{{$product->prdPrice->regular_price}}</span></del>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space-gap"></div>
+@endsection

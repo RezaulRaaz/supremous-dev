@@ -110,7 +110,7 @@
                             <div class="form-group">
                                 <label for="sr">Stock status</label>
                                 <select v-model="updateForm.stock"  id="sr" class="form-control">
-                                    <option v-for="stocks in stock" :value="stocks">{{stocks}}</option>
+                                    <option v-for="stocks in stock" :value="stocks" :key="stocks">{{stocks}}</option>
                                 </select>
                             </div>
                         </div>
@@ -144,13 +144,13 @@
                     <div class="form-group">
                         <label for="category">Category</label>
                         <select v-model="updateForm.categoryId" @change="getSubCategory()" id="category" class="form-control">
-                            <option v-for="cat in category" :value="cat.id">{{cat.Category_name}}</option>
+                            <option v-for="cat in category" :value="cat.id" :key="cat.id">{{cat.Category_name}}</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="subcategory">Sub Category</label>
                         <select v-model="updateForm.subCategoryId" id="subcategory"  class="form-control">
-                            <option v-for="category in subCategory"  :value="category.id">{{category.Category_name}}</option>
+                            <option v-for="category in subCategory"  :value="category.id" :key="category.id">{{category.Category_name}}</option>
                         </select>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                     <div class="form-group">
                         <label for="fd">Brands</label>
                         <select v-model="updateForm.brandId" id="fd" class="form-control">
-                            <option v-for="brand in brands" :value="brand.id">{{brand.Brand_name}}</option>
+                            <option v-for="brand in brands" :value="brand.id" :key="brand.id">{{brand.Brand_name}}</option>
                         </select>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                         <label for="img">Image</label>
                         <input @change="imageChange" multiple type="file" name="image" ref="files" class="form-control-file" id="img">
                     </div>
-                       <span v-for="(picture,i) in this.updateForm.pictures">
+                       <span v-for="(picture,i) in this.updateForm.pictures" :key="i">
                         <img :src="'/images/products/'+picture" width="100" height="100">
                     </span>
                 </div>
@@ -186,7 +186,7 @@
                         <div class="col-4">
                          <span>
                             <select v-model="updateForm.variantionId" @change="att"  class="form-control">
-                               <option v-for="variants in Variations"  :value="variants.id">{{variants.name}}</option>
+                               <option v-for="variants in Variations"  :value="variants.id" :key="variants.id">{{variants.name}}</option>
                            </select>
                         </span>
                         </div>

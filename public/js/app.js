@@ -3142,6 +3142,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductComponent",
@@ -3152,6 +3160,7 @@ __webpack_require__.r(__webpack_exports__);
       shortDsc: false,
       options: [],
       stock: ['In Stock', 'Out Of Stock', 'On Backorder'],
+      position: ['Fetured', 'Newest', 'Popular'],
       form: {
         variationId: '',
         selectAttribute: null,
@@ -3163,6 +3172,7 @@ __webpack_require__.r(__webpack_exports__);
         specialPrice: '',
         costPerPiece: '',
         taxPerPiece: '',
+        positionSelect: 'Newest',
         Sku: '',
         barcode: '',
         quantity: 0,
@@ -3254,6 +3264,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('selected', this.form.selected);
       formData.append('yVideoLink', this.form.yVideoLink);
       formData.append('weight', this.form.weight);
+      formData.append('positionSelect', this.form.positionSelect);
       var config = {
         headers: {
           "content-type": "multipart/form-data"
@@ -38431,9 +38442,11 @@ var render = function() {
                         }
                       },
                       _vm._l(_vm.stock, function(stocks) {
-                        return _c("option", { domProps: { value: stocks } }, [
-                          _vm._v(_vm._s(stocks))
-                        ])
+                        return _c(
+                          "option",
+                          { key: stocks, domProps: { value: stocks } },
+                          [_vm._v(_vm._s(stocks))]
+                        )
                       }),
                       0
                     )
@@ -38550,6 +38563,54 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "subcategory" } }, [
+                  _vm._v("Slect Position")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.positionSelect,
+                        expression: "form.positionSelect"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.form,
+                          "positionSelect",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  _vm._l(_vm.position, function(pos) {
+                    return _c(
+                      "option",
+                      { key: pos, domProps: { value: pos } },
+                      [_vm._v(_vm._s(pos))]
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
               _c("div", { staticClass: "form-check form-check-inline" }, [
                 _c("input", {
                   directives: [
@@ -38663,7 +38724,7 @@ var render = function() {
                     _vm._l(_vm.categories, function(category) {
                       return _c(
                         "option",
-                        { domProps: { value: category.id } },
+                        { key: category.id, domProps: { value: category.id } },
                         [_vm._v(_vm._s(category.Category_name))]
                       )
                     })
@@ -38718,7 +38779,10 @@ var render = function() {
                     _vm._l(_vm.subCategory, function(subCategories) {
                       return _c(
                         "option",
-                        { domProps: { value: subCategories.id } },
+                        {
+                          key: subCategories.id,
+                          domProps: { value: subCategories.id }
+                        },
                         [_vm._v(_vm._s(subCategories.Category_name))]
                       )
                     })
@@ -38775,9 +38839,11 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _vm._l(_vm.brands, function(brand) {
-                      return _c("option", { domProps: { value: brand.id } }, [
-                        _vm._v(_vm._s(brand.Brand_name))
-                      ])
+                      return _c(
+                        "option",
+                        { key: brand.id, domProps: { value: brand.id } },
+                        [_vm._v(_vm._s(brand.Brand_name))]
+                      )
                     })
                   ],
                   2
@@ -38858,7 +38924,10 @@ var render = function() {
                         _vm._l(_vm.Variations, function(variation) {
                           return _c(
                             "option",
-                            { domProps: { value: variation.id } },
+                            {
+                              key: variation.id,
+                              domProps: { value: variation.id }
+                            },
                             [_vm._v(_vm._s(variation.name))]
                           )
                         })
@@ -39495,9 +39564,11 @@ var render = function() {
                       }
                     },
                     _vm._l(_vm.stock, function(stocks) {
-                      return _c("option", { domProps: { value: stocks } }, [
-                        _vm._v(_vm._s(stocks))
-                      ])
+                      return _c(
+                        "option",
+                        { key: stocks, domProps: { value: stocks } },
+                        [_vm._v(_vm._s(stocks))]
+                      )
                     }),
                     0
                   )
@@ -39728,9 +39799,11 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.category, function(cat) {
-                  return _c("option", { domProps: { value: cat.id } }, [
-                    _vm._v(_vm._s(cat.Category_name))
-                  ])
+                  return _c(
+                    "option",
+                    { key: cat.id, domProps: { value: cat.id } },
+                    [_vm._v(_vm._s(cat.Category_name))]
+                  )
                 }),
                 0
               )
@@ -39775,9 +39848,11 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.subCategory, function(category) {
-                  return _c("option", { domProps: { value: category.id } }, [
-                    _vm._v(_vm._s(category.Category_name))
-                  ])
+                  return _c(
+                    "option",
+                    { key: category.id, domProps: { value: category.id } },
+                    [_vm._v(_vm._s(category.Category_name))]
+                  )
                 }),
                 0
               )
@@ -39826,9 +39901,11 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.brands, function(brand) {
-                  return _c("option", { domProps: { value: brand.id } }, [
-                    _vm._v(_vm._s(brand.Brand_name))
-                  ])
+                  return _c(
+                    "option",
+                    { key: brand.id, domProps: { value: brand.id } },
+                    [_vm._v(_vm._s(brand.Brand_name))]
+                  )
                 }),
                 0
               )
@@ -39860,7 +39937,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm._l(this.updateForm.pictures, function(picture, i) {
-                return _c("span", [
+                return _c("span", { key: i }, [
                   _c("img", {
                     attrs: {
                       src: "/images/products/" + picture,
@@ -39920,7 +39997,7 @@ var render = function() {
                     _vm._l(_vm.Variations, function(variants) {
                       return _c(
                         "option",
-                        { domProps: { value: variants.id } },
+                        { key: variants.id, domProps: { value: variants.id } },
                         [_vm._v(_vm._s(variants.name))]
                       )
                     }),
