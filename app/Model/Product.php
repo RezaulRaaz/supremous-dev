@@ -14,4 +14,8 @@ class Product extends Model
     {
     	return $this->hasOne('App\Model\Prdposition');
     }
+    public function prdVariants()
+    {
+    	return $this->hasOne('App\Model\Prdvariant');
+    }
 }

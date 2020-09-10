@@ -9,20 +9,7 @@
                         <vue-editor></vue-editor>
                         <h4>tiny</h4>
                         <editor
-                            :init="{
-                             height: 500,
-                             menubar: true,
-                             plugins: [
-                               'advlist autolink lists link image charmap print preview anchor',
-                               'searchreplace visualblocks code fullscreen ',
-                               'insertdatetime media table paste code emoticons help wordcount',
-                               'image'
-                             ],
-                             toolbar:
-                               'formatselect | bold italic forecolor  backcolor link | \
-                               alignleft aligncenter alignright alignjustify | image emoticons |\
-                               bullist numlist outdent indent | removeformat'
-                           }"
+                            :init="init"
                             v-model="description"
                         />
                     </div>
@@ -42,16 +29,32 @@
             return{
                 description:'',
                 theme: "modern",
+                init:{
+                    path_absolute : "/",
+                    height: 500,
+                    menubar: true,
+                    plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen ',
+                    'insertdatetime media table paste code emoticons help wordcount',
+                    'image'
+                    ],
+                    toolbar:
+                    'formatselect | bold italic forecolor  backcolor link | \
+                    alignleft aligncenter alignright alignjustify | image emoticons |\
+                    bullist numlist outdent indent | removeformat',
+                }
 
             }
         },
         mounted() {
-            console.log('Component mounted.')
+            console.log(this.init)
         }
     }
 
-
 </script>
+
 <style>
     .tox-notifications-container{display:none!important;}
+
 </style>

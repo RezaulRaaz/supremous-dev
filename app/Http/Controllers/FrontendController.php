@@ -12,7 +12,8 @@ class FrontendController extends Controller
         return view('welcome',compact('products'));
     }
     public function productDetails($productName,$id){
-        $prd=Product::where('id','=',$id)->first();
+        $pid = \Crypt::decrypt($id);
+        $prd=Product::where('id','=',$pid)->first();
         return view('single',compact('prd'));
     }
 }

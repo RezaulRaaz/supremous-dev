@@ -2342,19 +2342,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2363,11 +2350,20 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       description: '',
-      theme: "modern"
+      theme: "modern",
+      init: {
+        path_absolute: "/",
+        height: 500,
+        menubar: true,
+        plugins: ['advlist autolink lists link image charmap print preview anchor', 'searchreplace visualblocks code fullscreen ', 'insertdatetime media table paste code emoticons help wordcount', 'image'],
+        toolbar: 'formatselect | bold italic forecolor  backcolor link | \
+                alignleft aligncenter alignright alignjustify | image emoticons |\
+                bullist numlist outdent indent | removeformat'
+      }
     };
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log(this.init);
   }
 });
 
@@ -3526,11 +3522,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProducteditComponenr",
-  props: ['product', 'price', 'inventory', 'category', 'release', 'categoryprd', 'prdbrand', 'prdvairiants'],
+  props: ['product', 'inventory', 'category', 'release', 'categoryprd', 'prdbrand', 'prdvairiants'],
   data: function data() {
     return {
+      position: ['Fetured', 'Newest', 'Popular'],
       stock: ['In Stock', 'Out Of Stock', 'On Backorder'],
       options: [],
       images: [],
@@ -3539,11 +3542,12 @@ __webpack_require__.r(__webpack_exports__);
         name: this.product.product_name,
         description: this.product.description,
         short_description: this.product.short_description,
-        regular_price: this.price.regular_price,
-        special_price: this.price.special_price,
-        cost_per_price: this.price.cost_per_price,
-        tax_per_price: this.price.tax_per_price,
-        supplier_price: this.price.supplierPrice,
+        positionSelect: 'Fetured',
+        regular_price: '',
+        special_price: '',
+        cost_per_price: '',
+        tax_per_price: '',
+        supplier_price: '',
         sku: this.inventory.sku,
         barcode: this.inventory.barcode,
         available: this.inventory.available,
@@ -3571,10 +3575,22 @@ __webpack_require__.r(__webpack_exports__);
     this.att();
     this.variatnsParse();
     this.imageParse();
+    this.getProduct();
   },
   methods: {
     getSubCategory: function getSubCategory() {
       this.$store.dispatch('getSubCategory', this.updateForm.categoryId);
+    },
+    getProduct: function getProduct() {
+      var _this = this;
+
+      axios.get('/admin/get/edit/products/' + this.updateForm.id).then(function (response) {
+        _this.updateForm.regular_price = response.data.price.regular_price;
+        _this.updateForm.special_price = response.data.price.special_price;
+        _this.updateForm.supplier_price = response.data.price.supplierPrice;
+        _this.updateForm.cost_per_price = response.data.price.cost_per_price;
+        _this.updateForm.tax_per_price = response.data.price.tax_per_price;
+      });
     },
     getBrand: function getBrand() {
       this.$store.dispatch('getBrand');
@@ -3583,12 +3599,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('getVariation');
     },
     att: function att() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/admin/get/sub/variation/' + this.updateForm.variantionId).then(function (response) {
-        _this.options = [], _this.finalvariants;
+        _this2.options = [], _this2.finalvariants;
         response.data.attributeResult.map(function (getDa) {
-          return _this.options.push(getDa.name);
+          return _this2.options.push(getDa.name);
         });
       });
     },
@@ -3604,7 +3620,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     ProductUpdate: function ProductUpdate() {
-      var _this2 = this;
+      var _this3 = this;
 
       var self = this;
       var formData = new FormData();
@@ -3632,6 +3648,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('weight', this.updateForm.weight);
       formData.append('continue_selling', this.updateForm.continue_selling);
       formData.append('realeaseTime', this.updateForm.release_date);
+      formData.append('positionSelect', this.updateForm.positionSelect);
       formData.append('categoryId', this.updateForm.categoryId);
       formData.append('subCategoryId', this.updateForm.subCategoryId);
       formData.append('brand', this.updateForm.brandId);
@@ -3643,7 +3660,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       axios.post('/admin/update/product', formData, config).then(function (response) {
-        _this2.$noty.success(response.data.success);
+        _this3.$noty.success(response.data.success);
       })["catch"](function (e) {
         console.log(e);
       });
@@ -6032,7 +6049,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.tox-notifications-container{display:none!important;}\n", ""]);
+exports.push([module.i, "\n.tox-notifications-container{display:none!important;}\n\n", ""]);
 
 // exports
 
@@ -36964,22 +36981,7 @@ var render = function() {
               _c("h4", [_vm._v("tiny")]),
               _vm._v(" "),
               _c("editor", {
-                attrs: {
-                  init: {
-                    height: 500,
-                    menubar: true,
-                    plugins: [
-                      "advlist autolink lists link image charmap print preview anchor",
-                      "searchreplace visualblocks code fullscreen ",
-                      "insertdatetime media table paste code emoticons help wordcount",
-                      "image"
-                    ],
-                    toolbar:
-                      "formatselect | bold italic forecolor  backcolor link | \
-                           alignleft aligncenter alignright alignjustify | image emoticons |\
-                           bullist numlist outdent indent | removeformat"
-                  }
-                },
+                attrs: { init: _vm.init },
                 model: {
                   value: _vm.description,
                   callback: function($$v) {
@@ -39690,6 +39692,52 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "subcategory" } }, [
+                _vm._v("Slect Position")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.updateForm.positionSelect,
+                      expression: "updateForm.positionSelect"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.updateForm,
+                        "positionSelect",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.position, function(pos) {
+                  return _c("option", { key: pos, domProps: { value: pos } }, [
+                    _vm._v(_vm._s(pos))
+                  ])
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-check form-check-inline" }, [
               _c("input", {
                 directives: [
@@ -39747,7 +39795,7 @@ var render = function() {
                   staticClass: "form-check-label",
                   attrs: { for: "inlineCheckbox1" }
                 },
-                [_vm._v("Release")]
+                [_vm._v("Publish")]
               )
             ])
           ])

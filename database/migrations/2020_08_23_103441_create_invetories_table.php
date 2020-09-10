@@ -17,7 +17,7 @@ class CreateInvetoriesTable extends Migration
             $table->id();
             $table->string('sku')->nullable();
             $table->string('barcode')->nullable();
-            $table->string('available');
+            $table->string('available')->nullable();
             $table->string('total_sell')->nullable();
             $table->string('weight')->nullable();
             $table->string('continue_selling')->nullable();

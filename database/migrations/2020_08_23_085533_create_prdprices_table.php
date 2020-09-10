@@ -15,7 +15,7 @@ class CreatePrdpricesTable extends Migration
     {
         Schema::create('prdprices', function (Blueprint $table) {
             $table->id();
-            $table->string('regular_price');
+            $table->string('regular_price')->nullable();
             $table->string('special_price')->nullable();
             $table->string('cost_per_price')->nullable();
             $table->string('tax_per_price')->nullable();

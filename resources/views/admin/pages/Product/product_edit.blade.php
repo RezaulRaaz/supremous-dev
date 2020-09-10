@@ -10,7 +10,6 @@
 @endsection
 @section('content')
 <productedit-component
-    :price="{{$price}}"
     :product="{{$product}}"
     :inventory="{{$inventory}}"
     :release="{{$release}}"

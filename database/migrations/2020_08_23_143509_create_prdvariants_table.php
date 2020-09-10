@@ -15,8 +15,8 @@ class CreatePrdvariantsTable extends Migration
     {
         Schema::create('prdvariants', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('variants_attribute');
-            $table->integer('variantion_id');
+            $table->mediumText('variants_attribute')->nullable();
+            $table->integer('variantion_id')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();

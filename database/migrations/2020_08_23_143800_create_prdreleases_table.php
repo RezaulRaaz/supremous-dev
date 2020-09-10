@@ -15,7 +15,7 @@ class CreatePrdreleasesTable extends Migration
     {
         Schema::create('prdreleases', function (Blueprint $table) {
             $table->id();
-            $table->string('release_date');
+            $table->string('release_date')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();

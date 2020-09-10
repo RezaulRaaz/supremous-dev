@@ -54,7 +54,7 @@
                                 <input  type="text" v-model="updateForm.tax_per_price" class="form-control" placeholder="Price" id="tax" aria-describedby="emailHelp">
                             </div>
                         </div>
-                           <div class="col-6">
+                        <div class="col-6">
                             <div class="form-group">
                                 <label for="tax">Supplier Price</label>
                                 <input  type="text" v-model="updateForm.supplier_price" class="form-control" placeholder="Price" id="tax" aria-describedby="emailHelp">
@@ -132,9 +132,15 @@
                         <label for="example-datetime-local-input" class="col-form-label">Date and time</label>
                         <input v-model="updateForm.release_date" class="form-control" type="datetime-local"  id="example-datetime-local-input">
                     </div>
+                          <div class="form-group">
+                                <label for="subcategory">Slect Position</label>
+                                <select v-model="updateForm.positionSelect" class="form-control">
+                                    <option v-for="pos in position" :value="pos" :key="pos">{{pos}}</option>
+                                </select>
+                            </div>
                     <div class="form-check form-check-inline">
                         <input v-model="updateForm.publish_status" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label"  for="inlineCheckbox1">Release</label>
+                        <label class="form-check-label"  for="inlineCheckbox1">Publish</label>
                     </div>
                 </div>
             </div>
@@ -222,7 +228,6 @@ export default {
     name: "ProducteditComponenr",
     props:[
         'product',
-        'price',
         'inventory',
         'category',
         'release',
@@ -232,6 +237,7 @@ export default {
     ],
     data(){
         return {
+            position:['Fetured','Newest','Popular'],
             stock:['In Stock','Out Of Stock','On Backorder'],
             options:[],
             images:[],
@@ -240,11 +246,15 @@ export default {
                 name:this.product.product_name,
                 description:this.product.description,
                 short_description:this.product.short_description,
-                regular_price:this.price.regular_price,
-                special_price:this.price.special_price,
-                cost_per_price:this.price.cost_per_price,
-                tax_per_price:this.price.tax_per_price,
-                supplier_price:this.price.supplierPrice,
+
+                positionSelect:'Fetured',
+
+                regular_price:'',
+                special_price:'',
+                cost_per_price:'',
+                tax_per_price:'',
+                supplier_price:'',
+
                 sku:this.inventory.sku,
                 barcode:this.inventory.barcode,
                 available:this.inventory.available,
@@ -273,10 +283,21 @@ export default {
             this.att();
             this.variatnsParse();
             this.imageParse();
+            this.getProduct();
     },
     methods:{
           getSubCategory(){
                 this.$store.dispatch('getSubCategory',this.updateForm.categoryId)
+            },
+            getProduct(){
+                axios.get('/admin/get/edit/products/'+this.updateForm.id)
+                .then((response) => {
+                   this.updateForm.regular_price=response.data.price.regular_price;
+                   this.updateForm.special_price=response.data.price.special_price;
+                   this.updateForm.supplier_price=response.data.price.supplierPrice;
+                   this.updateForm.cost_per_price=response.data.price.cost_per_price;
+                   this.updateForm.tax_per_price=response.data.price.tax_per_price;
+                 })
             },
             getBrand() {
                 this.$store.dispatch('getBrand')
@@ -333,6 +354,7 @@ export default {
                 formData.append('continue_selling',this.updateForm.continue_selling)
 
                 formData.append('realeaseTime',this.updateForm.release_date)
+                formData.append('positionSelect',this.updateForm.positionSelect)
 
                 formData.append('categoryId',this.updateForm.categoryId)
                 formData.append('subCategoryId',this.updateForm.subCategoryId)

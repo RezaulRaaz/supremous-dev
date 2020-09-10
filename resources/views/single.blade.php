@@ -109,16 +109,10 @@
                         <h6>SELECT SIZE</h6>
                         <div class="space-gap15"></div>
                         <div class="sizes">
-                            <div class="sizes-btn">5</div>
-                            <div class="sizes-btn">10</div>
-                            <div class="sizes-btn">12</div>
-                            <div class="sizes-btn">14</div>
-                            <div class="sizes-btn">17</div>
-                            <div class="sizes-btn">19</div>
-                            <div class="sizes-btn">22</div>
-                            <div class="sizes-btn">24</div>
-                            <div class="sizes-btn">25</div>
-                            <div class="sizes-btn">27</div>
+                            <div class="sizes-btn">35</div>
+                            <div class="sizes-btn">36</div>
+                            <div class="sizes-btn">38</div>
+                            <div class="sizes-btn">43</div>
                         </div>
                     </div>
                     <div class="space-gap25"></div>

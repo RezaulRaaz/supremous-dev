@@ -20,7 +20,7 @@
              @foreach($products as $product)
                 @if($product->prdPosition->position=='Fetured')
                 <div class="product-card">
-                <a href="{{url('products/'.$product->product_name.'/'.$product->id)}}">
+                <a href="{{url('products/'.$product->slug.'/'.Crypt::encrypt($product->id))}}">
                     <div class="product-img">
                     <img src="{{asset('images/products/'.json_decode($product->images)[0])}}" alt="">
                     </div>
@@ -126,7 +126,7 @@
                 @foreach($products as $product)
                 @if($product->prdPosition->position=='Newest')
                     <div class="product-card">
-                        <a href="{{url('products/'.$product->product_name.'/'.$product->id)}}">
+                        <a href="{{url('products/'.$product->slug.'/'.Crypt::encrypt($product->id))}}">
                         <div class="product-img">
                             <img src="{{asset('images/products/'.json_decode($product->images)[0])}}" alt="">
                         </div>

@@ -13,6 +13,9 @@ route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::get('/edit/product/{id}','ProductController@edit')->name('edit.product');
     Route::post('/update/product','ProductController@UpdateProduct')->name('update.product');
 
+    Route::get('/get/edit/products/{id}','ProductController@EditProduct')->name('get.edit.price');
+
+
     Route::post('add/brand','BrandController@store')->name('add.brand');
     Route::get('get/brand','BrandController@index')->name('get.brand');
     Route::get('brand/delete/{id}','BrandController@distroy')->name('brand.delete');
