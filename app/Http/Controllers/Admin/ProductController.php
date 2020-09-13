@@ -23,10 +23,11 @@ class ProductController extends Controller
     {
         if ($request->hasFile('files')){
             $picture=[];
+            $date = date("FY");
             foreach ($request->file('files') as $key=>$file){
                 $ext=$file->getClientOriginalName();
-                $filename=($key+1).$request->ProductName.'.'.$ext;
-                $file->move(public_path('images/products/'),$filename);
+                $filename=$date.'/'.($key+1).$request->ProductName.'.'.$ext;
+                $file->move(public_path('images/products/'.$date.'/'),$filename);
                 $picture[]=$filename;
             }
             $slug = Str::slug($request->ProductName, '-');
@@ -51,7 +52,7 @@ class ProductController extends Controller
                     $prdPrice->product_id=$product->id;
                     $prdPrice->save();
                 }
-                if(!empty($request->quantity)){
+
                     $inventory= new Invetory();
                     $inventory->sku=$request->Sku;
                     $inventory->barcode=$request->barcode;
@@ -60,33 +61,32 @@ class ProductController extends Controller
                     $inventory->continue_selling=$request->continue_selling;
                     $inventory->product_id=$product->id;
                     $inventory->save();
-                }
-                if(!empty($request->realeaseTime)){
+
+
                     $releaseTime= new Prdrelease();
                     $releaseTime->release_date=$request->realeaseTime;
                     $releaseTime->product_id=$product->id;
                     $releaseTime->save();
-                }
-                if(!empty($request->categoryId)){
+
+
                     $prdCategory= new Prdcategory();
                     $prdCategory->category_id=$request->categoryId;
                     $prdCategory->subcategory_id=$request->subCategoryId;
                     $prdCategory->product_id=$product->id;
                     $prdCategory->save();
-                }
-                if(!empty($request->brand)){
+
+
                     $prdBrand= new Prdbrand();
                     $prdBrand->brand_id=$request->brand;
                     $prdBrand->product_id=$product->id;
                     $prdBrand->save();
-                }
-                if(!empty($request->selected)){
+
+
                     $PrdVariant= new Prdvariant();
                     $PrdVariant->variantion_id=$request->variationId;
-                    $PrdVariant->variants_attribute=json_encode($request->selected);
+                    $PrdVariant->variants_attribute=$request->selectAttribute;
                     $PrdVariant->product_id=$product->id;
                     $PrdVariant->save();
-                }
                 $prdposition= new Prdposition();
                 $prdposition->position=$request->positionSelect;
                 $prdposition->product_id=$product->id;
@@ -128,6 +128,11 @@ class ProductController extends Controller
                     $releaseTime->product_id=$product->id;
                     $releaseTime->save();
 
+                    $prdposition= new Prdposition();
+                    $prdposition->position=$request->positionSelect;
+                    $prdposition->product_id=$product->id;
+                    $prdposition->save();
+
                     $prdCategory= new Prdcategory();
                     $prdCategory->category_id=$request->categoryId;
                     $prdCategory->subcategory_id=$request->subCategoryId;
@@ -141,14 +146,9 @@ class ProductController extends Controller
 
                     $PrdVariant= new Prdvariant();
                     $PrdVariant->variantion_id=$request->variationId;
-                    $PrdVariant->variants_attribute=json_encode($request->selected);
+                    $PrdVariant->variants_attribute=$request->selectAttribute;
                     $PrdVariant->product_id=$product->id;
                     $PrdVariant->save();
-
-                    $prdposition= new Prdposition();
-                    $prdposition->position=$request->positionSelect;
-                    $prdposition->product_id=$product->id;
-                    $prdposition->save();
 
              return response()->json(['success'=>'Success fully added']);
             }
@@ -156,8 +156,7 @@ class ProductController extends Controller
     }
 
     public function show(){
-
-        return new ProductCollection(Product::orderBy('id','DESC')->paginate(20));
+        return new ProductCollection(Product::with('prdPrice')->orderBy('id','DESC')->paginate(15));
     }
 
     public function edit($id){
@@ -224,7 +223,7 @@ class ProductController extends Controller
 
             $PrdVariant= Prdvariant::where('product_id',$id)->first();
             $PrdVariant->variantion_id=$request->variationId;
-            $PrdVariant->variants_attribute=json_encode($request->selected);
+            $PrdVariant->variants_attribute=$request->selected;
             $PrdVariant->save();
 
             $prdposition= Prdposition::where('product_id',$id)->first();
@@ -274,7 +273,7 @@ class ProductController extends Controller
 
             $PrdVariant= Prdvariant::where('product_id',$id)->first();
             $PrdVariant->variantion_id=$request->variationId;
-            $PrdVariant->variants_attribute=json_encode($request->selected);
+            $PrdVariant->variants_attribute=$request->selected;
             $PrdVariant->save();
 
             $prdposition= Prdposition::where('product_id',$id)->first();
@@ -288,5 +287,13 @@ class ProductController extends Controller
     public function EditProduct($id){
         $price=Prdprice::where('product_id',$id)->first();
         return response()->json(['price'=>$price]);
+    }
+    public function ProductDelete($id){
+        $delete=Product::where("id",$id)->first();
+        if ($delete->delete()){
+            return response()->json(['success'=>'Success fully Delete']);
+        }else{
+            return response()->json(['warn'=>'Something wrong input properly your data']);
+        }
     }
 }

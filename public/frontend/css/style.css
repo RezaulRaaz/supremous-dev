@@ -65,7 +65,7 @@ body{
 .top-header ul li{
     float: left;
     margin-right: 15px;
-    
+
 }
 .top-header ul li a{
     color: rgb(68, 68, 68);
@@ -251,7 +251,7 @@ header{
     display: grid;
     grid-template-columns: auto auto auto auto;
     justify-content: space-between;
-    gap: 15px; 
+    gap: 15px;
 } */
 
 .product .space-gap{
@@ -273,14 +273,14 @@ header{
 }
 .product-card{
     width: 280px;
-    height: 520px;
+    height: 460px;
     padding: 15px;
     overflow: hidden;
     position: relative;
 }
 .product-img{
     width: 100%;
-    height: 350px;
+    height: 290px;
 }
 .product-img img{
     width: 100%;
@@ -309,7 +309,7 @@ header{
 /* why choose us section */
 .why-chose-us .top-section p{
     font-size: 25px;
-    font-weight: 400; 
+    font-weight: 400;
 }
 .why-choose-us-area{
     width: 100%;
@@ -509,7 +509,7 @@ footer .logo img{
     height: 70px;
 }
 .product-dsc-tab a{
- color: #707070;; 
+ color: #707070;;
 }
 .active.dsc-tab-item {
  border-bottom: 1px solid;
@@ -531,7 +531,7 @@ footer .logo img{
     background-color: #777272;
     padding: 12px 50px;
     border-radius: 22px;
-    cursor: pointer; 
+    cursor: pointer;
 }
 .review-img{
     width: 100px;

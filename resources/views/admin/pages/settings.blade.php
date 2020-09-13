@@ -40,14 +40,14 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-flex py-75" id="account-pill-social" data-toggle="pill" href="#account-vertical-social" aria-expanded="false">
-                                <i class="feather icon-camera mr-50 font-medium-3"></i>
+                                <i class="feather icon-link mr-50 font-medium-3"></i>
                                 Social links
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-flex py-75" id="account-pill-connections" data-toggle="pill" href="#account-vertical-connections" aria-expanded="false">
                                 <i class="feather icon-feather mr-50 font-medium-3"></i>
-                                Connections
+                                Connect Plugins
                             </a>
                         </li>
                         <li class="nav-item">
@@ -104,7 +104,7 @@
                                                     <div class="form-group">
                                                         <div class="controls">
                                                             <label for="account-username">Store Name</label>
-                                                        <input type="text" class="form-control" name="Store_name" id="account-username" placeholder="Store name" value="{{$setting->Store_name}}" required data-validation-required-message="This store name field is required">
+                                                            <input type="text" class="form-control" name="Store_name" id="account-username" placeholder="Store name" value="{{$setting->Store_name}}" required data-validation-required-message="This store name field is required">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,32 +166,7 @@
                                        <social-component></social-component>
                                     </div>
                                     <div class="tab-pane fade" id="account-vertical-connections" role="tabpanel" aria-labelledby="account-pill-connections" aria-expanded="false">
-                                        <div class="row">
-                                            <div class="col-12 mb-3">
-                                                <a href="javascript: void(0);" class="btn btn-info">Connect to
-                                                    <strong>Twitter</strong></a>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <button class=" btn btn-sm btn-secondary float-right">edit</button>
-                                                <h6>You are connected to facebook.</h6>
-                                                <span>Johndoe@gmail.com</span>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <a href="javascript: void(0);" class="btn btn-danger">Connect to
-                                                    <strong>Google</strong>
-                                                </a>
-                                            </div>
-                                            <div class="col-12 mb-2">
-                                                <button class=" btn btn-sm btn-secondary float-right">edit</button>
-                                                <h6>You are connected to Instagram.</h6>
-                                                <span>Johndoe@gmail.com</span>
-                                            </div>
-                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                    changes</button>
-                                                <button type="reset" class="btn btn-outline-warning">Cancel</button>
-                                            </div>
-                                        </div>
+                                       <connect-component :massenger="{{Massenger()}}"></connect-component>
                                     </div>
                                     <div class="tab-pane fade" id="account-vertical-notifications" role="tabpanel" aria-labelledby="account-pill-notifications" aria-expanded="false">
                                         <div class="row">

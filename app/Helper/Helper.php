@@ -3,6 +3,7 @@
 use App\Model\Setting;
 use App\Model\Social;
 use App\Model\Info;
+use App\Model\Masseger;
 
 function imgPath($imgName){
     return asset('images/'.$imgName);
@@ -32,4 +33,8 @@ function currency(){
 function social(){
     $Social=Social::find(1);
     return $Social;
+}
+function Massenger(){
+    $msg=Masseger::find(1);
+    return $msg;
 }

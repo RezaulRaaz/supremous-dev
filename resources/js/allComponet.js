@@ -8,9 +8,7 @@ import ProducteditComponent from './components/admin/product/ProducteditComponen
 import SocialComponent from './components/admin/settings/SocialComponent.vue'
 import ChangePasswordComponent from './components/admin/settings/ChangePasswordComponent.vue'
 import InfoComponent from './components/admin/settings/InfoComponent.vue'
-
-import PaginateComponent from './components/admin/partial/PaginateComponent.vue'
-
+import ConnectComponent from './components/admin/settings/ConnectPluginsComponent.vue'
 
 
 var components={
@@ -27,8 +25,8 @@ var components={
     'social-component':SocialComponent,
 
     'info-component':InfoComponent,
+    'connect-component':ConnectComponent,
 
-    'paginate-component':PaginateComponent,
 }
 
 

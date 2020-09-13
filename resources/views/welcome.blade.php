@@ -20,9 +20,9 @@
              @foreach($products as $product)
                 @if($product->prdPosition->position=='Fetured')
                 <div class="product-card">
-                <a href="{{url('products/'.$product->slug.'/'.Crypt::encrypt($product->id))}}">
+                <a href="{{url('products/'.$product->slug.'/'.Hashids::encode($product->id))}}">
                     <div class="product-img">
-                    <img src="{{asset('images/products/'.json_decode($product->images)[0])}}" alt="">
+                    <img src="@if(!empty($product->images)){{asset('images/products/'.json_decode($product->images)[0])}}@endif" alt="">
                     </div>
                     <div class="product-details">
                         <div class="product-name">
@@ -113,6 +113,7 @@
 </div>
 
 <div class="space-gap"></div>
+
 <div class="product">
     <div class="container">
         <div class="product-top text-center">
@@ -128,7 +129,7 @@
                     <div class="product-card">
                         <a href="{{url('products/'.$product->slug.'/'.Crypt::encrypt($product->id))}}">
                         <div class="product-img">
-                            <img src="{{asset('images/products/'.json_decode($product->images)[0])}}" alt="">
+                        <img src="@if(!empty($product->images)){{asset('images/products/'.json_decode($product->images)[0])}}@endif" alt="">
                         </div>
                         <div class="product-details">
                             <div class="product-name">

@@ -18,6 +18,30 @@
     <link rel="stylesheet" href="{{asset('frontend/css/menu.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/mobile.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v8.0'
+        });
+      };
+
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Your Chat Plugin code -->
+    <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="{{Massenger()->Page_id}}"
+        theme_color="{{Massenger()->color}}">
+    </div>
 </head>
 
 <body>
@@ -29,6 +53,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset(asset('frontend/js/main.js'))}}"></script>
+    @stack('js')
 
 </body>
 

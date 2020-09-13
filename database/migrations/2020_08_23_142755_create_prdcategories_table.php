@@ -15,7 +15,7 @@ class CreatePrdcategoriesTable extends Migration
     {
         Schema::create('prdcategories', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
+            $table->integer('category_id')->nullable();
             $table->integer('subcategory_id')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

@@ -3,7 +3,6 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title">Add New Brand</h4>
-                <h4 class="header-title">{{abc}}</h4>
                 <div class="row">
                         <div class="col-lg-6 col-sm-12">
                             <form enctype="multipart/form-data" method="post" @submit.prevent="submitForm">
@@ -42,7 +41,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(Brand,index) in brands">
+                            <tr v-for="(Brand,index) in brands" :key="index">
                                 <th scope="row">{{index+1}}</th>
                                 <td>{{Brand.Brand_name}}</td>
                                 <td>

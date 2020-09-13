@@ -222,7 +222,7 @@
                             </div>
                         </div>
                     </div>
-                    <button @click="addProduct" class="btn mt-3 float-right btn-primary">Save</button>
+                    <button @click="addProduct" class="btn mt-3 float-right btn-primary">{{spiner}}&nbsp; &nbsp;<span class="spinner-border spinner-border-sm" v-if="spnnerLoding"></span></button>
                 </div>
             </div>
         </div>
@@ -236,6 +236,8 @@
         name: "ProductComponent",
         data(){
             return{
+                spnnerLoding:false,
+                spiner:'Save',
                 images:[],
                 imagePreview:[],
                 shortDsc:false,
@@ -244,7 +246,7 @@
                 position:['Fetured','Newest','Popular'],
                 form:{
                     variationId:'',
-                    selectAttribute:null,
+                    selectAttribute:this.stringfy,
                     realeaseTime:'',
                     name:'',
                     description:'',
@@ -279,9 +281,6 @@
 
         },
         methods:{
-            dateTimee(e){
-               alert(e)
-            },
             getBrand() {
                 this.$store.dispatch('getBrand')
             },
@@ -314,6 +313,8 @@
                 }
             },
             addProduct(){
+                this.spiner='Saving',
+                this.spnnerLoding=true;
                 var self=this
                 let formData =new FormData();
                 for (let i=0;i<this.images.length;i++){
@@ -338,7 +339,7 @@
                 formData.append('categoryId',this.form.categoryId)
                 formData.append('subCategoryId',this.form.subCategoryId)
                 formData.append('brand',this.form.brand)
-                formData.append('selectAttribute',this.form.selectAttribute)
+                formData.append('selectAttribute',JSON.stringify(this.form.selected))
                 formData.append('variationId',this.form.variationId)
                 formData.append('selected',this.form.selected)
                 formData.append('yVideoLink',this.form.yVideoLink)
@@ -349,18 +350,19 @@
                 }
                 axios.post('/admin/add/product',formData,config)
                     .then((response) => {
+                        this.spiner='Save'
+                        this.spnnerLoding=false;
                         this.$noty.success(response.data.success)
                     })
                     .catch((e) => {
-                       console.log(e)
-             });
+                       this.spiner='Not save'
+                      this.spnnerLoding=false;
+                });
             }
 
         },
         computed:{
-            stringfy(){
-               return this.form.selectAttribute = this.form.selected+' ';
-            },
+
             brands(){
                  return this.$store.getters.brands
             },
@@ -373,6 +375,9 @@
             Variations(){
                 return this.$store.getters.Variations
             },
+        },
+        watch:{
+
         }
     }
 </script>

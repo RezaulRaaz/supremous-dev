@@ -29,6 +29,7 @@ Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
 
+
 import components from "./allComponet";
 
 

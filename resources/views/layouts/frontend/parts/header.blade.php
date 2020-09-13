@@ -1,7 +1,7 @@
     <!-- mobile version top bar section -->
     <div class="mobile-menu-top-bar mobile-top-grid">
         <div class="mobile-logo">
-            <img src="images/logo/supremouse.png" alt="">
+            <a href="{{url('/')}}"><img src="{{logo()}}" alt="Logo"></a>
         </div>
         <div class="humberger-menu">
             <i class="fas fa-bars"></i>
@@ -12,16 +12,16 @@
     <div class="container">
         <div class="mobile-menu-bottom-bar mobile-bottom-grid">
             <div class="home-icon">
-                <a href="index.html"><i class="fas fa-home"></i></a>
+            <a href="{{url('/')}}"><i class="fas fa-home"></i></a>
             </div>
             <div class="home-icon">
                 <i class="fas fa-search"></i>
             </div>
             <div class="home-icon">
-                <a href="shop_page.html"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="fas fa-heart"></i></a>
             </div>
             <div class="home-icon">
-                <a href="product-detailse.html"><i class="fas fa-shopping-bag"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
             </div>
             <div class="home-icon">
                 <i class="fas fa-user"></i>
@@ -48,7 +48,7 @@
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a class="font-weight-bold" href="index.html">Men</a></li>
+                            <li><a class="font-weight-bold" href="#">Men</a></li>
                             <li><a class="font-weight-bold" href="#">gaming</a>
                                 <div class="mega-menu mega-full">
                                     <div class="container">

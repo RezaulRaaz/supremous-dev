@@ -34,5 +34,9 @@ class SettingsSeeder extends Seeder
             'instagram_links'=>'https://www.instagram.com/',
             'youtube_links'=>'https://www.youtube.com/',
         ]);
+        DB::table('massegers')->insert([
+            'Page_id'=>'112521853671162',
+            'color'=>'#100f0f',
+        ]);
     }
 }

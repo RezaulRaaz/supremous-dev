@@ -11,7 +11,12 @@ route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::post('/add/product','ProductController@store')->name('add.product');
     Route::get('/get/products','ProductController@show')->name('get.product');
     Route::get('/edit/product/{id}','ProductController@edit')->name('edit.product');
+
+    Route::get('/delete/product/{id}','ProductController@ProductDelete')->name('delete.product');
+
     Route::post('/update/product','ProductController@UpdateProduct')->name('update.product');
+
+    Route::get('/barcode','BarcodeController@index')->name('barcode');
 
     Route::get('/get/edit/products/{id}','ProductController@EditProduct')->name('get.edit.price');
 
@@ -42,7 +47,7 @@ route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::post('/settings/change/password','SettingsController@Changepassword')->name('settings.change.password');
 
     Route::post('/settings/social/add','SettingsController@addStore' )->name('add.social');
-
+    Route::post('/add/massenger','SettingsController@massenger' )->name('add.massenger');
 
 
     Route::get('/profile', 'DashboardController@profile')->name('profile');

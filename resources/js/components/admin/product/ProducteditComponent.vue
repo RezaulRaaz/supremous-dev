@@ -218,7 +218,7 @@
                     </div>
                 </div>
             </div>
-               <button @click="ProductUpdate" class="btn mt-3 float-right btn-primary">Save</button>
+               <button @click="ProductUpdate" class="btn mt-3 float-right btn-primary">{{spiner}}</button>
         </div>
     </div>
     </div>
@@ -241,6 +241,7 @@ export default {
             stock:['In Stock','Out Of Stock','On Backorder'],
             options:[],
             images:[],
+            spiner:'Update',
             updateForm:{
                 id:this.product.id,
                 name:this.product.product_name,
@@ -310,6 +311,7 @@ export default {
                 .then((response) => {
                      this.options=[],
                      this.finalvariants
+                     console.log(response.data.attributeResult)
                     response.data.attributeResult.map((getDa)=>{
                         return this.options.push(getDa.name);
                     });
@@ -327,6 +329,7 @@ export default {
             }
             },
             ProductUpdate(){
+                this.spiner='Updating'
                 var self=this
                 let formData =new FormData();
                 for (let i=0;i<this.images.length;i++){
@@ -362,14 +365,13 @@ export default {
                 formData.append('brand',this.updateForm.brandId)
 
                 formData.append('variationId',this.updateForm.variantionId)
-                formData.append('selected',this.updateForm.selected)
-
-
+                formData.append('selected',JSON.stringify(this.updateForm.selected))
                 const config ={
                     headers:{"content-type" : "multipart/form-data"}
                 }
                 axios.post('/admin/update/product',formData,config)
                     .then((response) => {
+                        this.spiner='Update'
                         this.$noty.success(response.data.success)
                     })
                     .catch((e) => {
@@ -379,9 +381,13 @@ export default {
     },
     computed:{
         finalvariants(){
-            let fin = this.updateForm.varitaion_attribute;
-            return this.updateForm.selected = fin.split(",");
+            let fin = JSON.parse(this.updateForm.varitaion_attribute);
+            return this.updateForm.selected = fin;
         },
+         stringfy(){
+                let stringto=JSON.stringify(this.updateForm.selected);
+               return this.updateForm.varitaion_attribute=stringto.toString();
+            },
         subCategory(){
                 return this.$store.getters.SubCategory
         },

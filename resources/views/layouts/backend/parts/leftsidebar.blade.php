@@ -24,6 +24,10 @@
                     </li>
                      <li class="@if(Route::is('admin.new.categories')) active @endif"><a href="{{route('admin.new.categories')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Category</span></a>
                     </li>
+
+                    <li class="@if(Route::is('admin.barcode')) active @endif"><a href="{{route('admin.barcode')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Barcode</span></a>
+                    </li>
+
                 </ul>
             </li>
             <li class="@if(Route::is('admin.variations')) active @endif"><a href="{{route('admin.variations')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Variations Specifics</span></a></li>

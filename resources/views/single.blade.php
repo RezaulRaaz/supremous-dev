@@ -109,10 +109,9 @@
                         <h6>SELECT SIZE</h6>
                         <div class="space-gap15"></div>
                         <div class="sizes">
-                            <div class="sizes-btn">35</div>
-                            <div class="sizes-btn">36</div>
-                            <div class="sizes-btn">38</div>
-                            <div class="sizes-btn">43</div>
+                            @foreach(json_decode($prd->prdVariants->variants_attribute) as $product)
+                            <div id="vriantsss" class="sizes-btn">{{$product}}</div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="space-gap25"></div>
@@ -250,3 +249,13 @@
 </div>
 <div class="space-gap"></div>
 @endsection
+@push('js')
+<script>
+  let varis= document.getElementById('vriantsss').innerHTML;
+  let pusdd=document.getElementsByClassName('sizes').innerHTML;
+  let res=varis.split(",")
+  res.map((data)=>{
+       console.log(data);
+  })
+</script>
+@endpush

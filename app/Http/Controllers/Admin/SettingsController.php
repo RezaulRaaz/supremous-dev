@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
+use App\Model\Masseger;
 use File;
 
 class SettingsController extends Controller
@@ -106,8 +107,20 @@ class SettingsController extends Controller
             if($user->save()){
                 return response()->json(['success'=>'Success fully Password Changed']);
             }
-        }else{
+            }else{
+                return response()->json(['notmatched'=>'Password Not Matched']);
+            }
+    }
+    public function massenger(Request $request){
+        $massenger = Masseger::find(1);
+        $massenger->Page_id = $request->page_id;
+        $massenger->color = $request->color;
+        if($massenger->save()){
+            return response()->json(['success'=>'Success fully Password Changed']);
+        }
+        else{
             return response()->json(['notmatched'=>'Password Not Matched']);
         }
     }
+
 }
