@@ -176,7 +176,7 @@
                 <div class="card-body">
                     <h4 class="header-title">Image</h4>
                     <div class="form-group">
-                        <label for="img">Image</label>
+                        <label for="img">Image(250 width x 300 height)</label>
                         <input @change="imageChange" multiple type="file" name="image" ref="files" class="form-control-file" id="img">
                     </div>
                        <span v-for="(picture,i) in this.updateForm.pictures" :key="i">

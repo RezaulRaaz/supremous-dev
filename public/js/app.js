@@ -38973,7 +38973,9 @@ var render = function() {
               _c("h4", { staticClass: "header-title" }, [_vm._v("Image")]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "img" } }, [_vm._v("Image")]),
+                _c("label", { attrs: { for: "img" } }, [
+                  _vm._v("Image(250 width x 300 height)")
+                ]),
                 _vm._v(" "),
                 _c("input", {
                   ref: "files",
@@ -40090,7 +40092,9 @@ var render = function() {
               _c("h4", { staticClass: "header-title" }, [_vm._v("Image")]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "img" } }, [_vm._v("Image")]),
+                _c("label", { attrs: { for: "img" } }, [
+                  _vm._v("Image(250 width x 300 height)")
+                ]),
                 _vm._v(" "),
                 _c("input", {
                   ref: "files",
@@ -56781,8 +56785,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! G:\neerveek\update soupremous\neerveeek0.3\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! G:\neerveek\update soupremous\neerveeek0.3\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! G:\neerveek\update soupremous\neerveeek0.4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! G:\neerveek\update soupremous\neerveeek0.4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

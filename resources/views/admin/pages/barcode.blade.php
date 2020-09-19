@@ -18,7 +18,7 @@
 
                     <div class="barcode" style="max-width:150px;">
                         <p style="font-size:12px;margin:0;" class="name">Supremouse</p>
-                        {!! DNS1D::getBarcodeHTML('123548', "C128",1.4,40) !!}
+                        {!! DNS1D::getBarcodeHTML('Supremouse barcode', "C128",1.4,40) !!}
                         <p style="font-size:12px;margin:0;">1234</p>
                     </div>
 
@@ -28,7 +28,7 @@
                     @for($i = 0; $i <=20;$i++ )
                     <div style="float:left;margin-right:30px;height:150px">    <p style="font-size:14px;text-align:center">neerveek</p>
                         {!! \DNS2D::getBarcodeSVG("price:130, http://supremous.com/", "QRCODE"); !!}</div>&nbsp; &nbsp; &nbsp;
-                    
+
                      @endfor
                     <br>
                     <br>

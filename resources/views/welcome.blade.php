@@ -2,6 +2,7 @@
 @section('content')
 @include('layouts.frontend.parts.slider')
    <!-- product section start -->
+   @if(!empty($products[0]->product_name))
    <div class="product">
     <div class="container">
         <div class="product-top d-flex align-items-center justify-content-between">
@@ -18,7 +19,7 @@
         <div class="product-card-area">
             <div class="owl-carousel selected-product">
              @foreach($products as $product)
-                @if($product->prdPosition->position=='Fetured')
+                @if($product->position=='Fetured')
                 <div class="product-card">
                 <a href="{{url('products/'.$product->slug.'/'.Hashids::encode($product->id))}}">
                     <div class="product-img">
@@ -29,8 +30,11 @@
                         <p>{{$product->product_name}}</p>
                         </div>
                         <div class="product-price">
-                            <span class="product-selling-price text-danger">{{currency()}}{{$product->prdPrice->special_price}}</span>
-                            <del><span class="product-regular-price">{{currency()}}{{$product->prdPrice->regular_price}}</span></del>
+                           @if ($product->special_price)<span class="product-regular-price">{{currency()}}{{$product->special_price}}
+                            @else
+                            <span class="product-selling-price text-dark">{{currency()}}{{$product->regular_price}}</span></span>
+                            @endif
+                           @if ($product->special_price) <del><span class="product-selling-price text-danger">{{currency()}}{{$product->regular_price}}</span></del>@endif
                         </div>
                     </div>
                 </a>
@@ -40,7 +44,8 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
+    @endif
 <div class="space-gap"></div>
   <!-- why Chose us start here -->
   <div class="why-chose-us">
@@ -113,7 +118,7 @@
 </div>
 
 <div class="space-gap"></div>
-
+@if(!empty($prdNewest[0]->product_name))
 <div class="product">
     <div class="container">
         <div class="product-top text-center">
@@ -124,10 +129,10 @@
         <div class="space-gap"></div>
         <div class="product-card-area">
             <div class="owl-carousel product-in-today">
-                @foreach($products as $product)
-                @if($product->prdPosition->position=='Newest')
+                @foreach($prdNewest as $product)
+                @if($product->position=='Newest')
                     <div class="product-card">
-                        <a href="{{url('products/'.$product->slug.'/'.Crypt::encrypt($product->id))}}">
+                        <a href="{{url('products/'.$product->slug.'/'.Hashids::encode($product->id))}}">
                         <div class="product-img">
                         <img src="@if(!empty($product->images)){{asset('images/products/'.json_decode($product->images)[0])}}@endif" alt="">
                         </div>
@@ -136,8 +141,11 @@
                                 <p>{{$product->product_name}}</p>
                             </div>
                             <div class="product-price">
-                                <span class="product-selling-price text-danger">{{currency()}}{{$product->prdPrice->special_price}}</span>
-                               <del> <span class="product-regular-price">{{currency()}}{{$product->prdPrice->regular_price}}</span></del>
+                                @if ($product->special_price)<span class="product-regular-price">{{currency()}}{{$product->special_price}}
+                                    @else
+                                    <span class="product-selling-price text-dark">{{currency()}}{{$product->regular_price}}</span></span>
+                                    @endif
+                                @if ($product->special_price && $product->regular_price) <del><span class="product-selling-price text-danger">{{currency()}}{{$product->regular_price}}</span></del>@endif
                             </div>
                         </div>
                         </a>
@@ -148,5 +156,6 @@
         </div>
     </div>
 </div>
+@endif
 <div class="space-gap"></div>
 @endsection

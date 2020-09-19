@@ -53,4 +53,10 @@ route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::get('/profile', 'DashboardController@profile')->name('profile');
     Route::post('/profile/add', 'ProfileController@store')->name('add.profile');
 
+    Route::get('/frontend/home', 'FrontendController@home')->name('frontend.home');
+    Route::post('/frontend/slider', 'FrontendController@sliderStore')->name('frontend.slider');
+    Route::get('/frontend/slider/edit/{id}','FrontendController@show')->name('frontend.slider.edit');
+
+    Route::post('/frontend/slider/edit/{id}','FrontendController@update')->name('frontend.slider.update');
+
 });

@@ -144,8 +144,9 @@ header{
     position: relative;
 }
 .slider-title{
-    width: 360px;
+    width: 40%;
     height: 300px;
+    overflow: hidden;
 }
 .slider-title h1{
     font-size: 50px;
@@ -155,10 +156,8 @@ header{
     margin-bottom: 30px;
 }
 .slider-title .btn-icon{
-    padding: 8px;
-    background-color: #FBB03B;
-    color: white;
-    border-radius: 50%;
+    padding: 8px 25px;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
 }
@@ -289,6 +288,8 @@ header{
 .product-details{
     width: 100%;
     margin-top: 25px;
+    padding: 0px 15px;
+    margin-bottom: 30px;
 }
 .product-name p{
     font-size: 18px;
@@ -410,24 +411,22 @@ footer .logo img{
 /* shop details page */
 .product-large-thumb img {
     width: 100%;
+    height: 465px;
 }
 .product-details-tab ul{
     margin: 5px -5px;
 }
 .product-details-tab ul li{
-    float: left;
-    width: 33.33%;
+    width: 100%;
     padding: 0 5px;
 }
 .product-details-tab ul li a{
     padding: 0;
 }
 .product-details-tab ul li a img{
-    width: 100%;
-    height: 140px;
-}
-.shop-product-details{
-    padding: 0 30px;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 2px;
 }
 .shop-product-delivery{
  padding: 10px;
@@ -437,13 +436,17 @@ footer .logo img{
     color: #707070;
 }
 .shop-product-details p {
-    font-size: 12px;
+    font-size: 16px;
 }
 .sale-btn{
     padding: 5px 10px;
     color: white ;
-    background-color: red;
     border-radius: 20px;
+}
+
+.sku p {
+    font-size: 16px;
+    font-weight: bold;
 }
 .shop-product-name p{
     font-size: 30px;
@@ -487,6 +490,15 @@ footer .logo img{
     cursor: pointer;
     font-size: 22px;
     color: #777272;
+}
+.qty-value{
+    overflow: hidden;
+}
+.qty-value input{
+    border: none;
+}
+.qty-value input:focus{
+    outline: none;
 }
 .qty .increase-btn{
     padding: 5px 10px;
