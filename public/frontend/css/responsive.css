@@ -210,4 +210,20 @@
         width: 100%;
         height: auto;
     }
+    .product-cart-details {
+        padding: 10px;
+        width: 60%;
+    }
+    .size-select{
+        display: inline;
+        font-size:14px
+    }
+    .size-select input{width:50px}
+    .product-cart-img img {
+        width: 130px;
+        height: 170px;
+    }
+    .cart-total p{
+            font-size:14px
+    }
 }

@@ -98,7 +98,7 @@
                                             </td>
                                             <td>
                                             <a href="{{route('admin.frontend.slider.edit',$slider->id)}}"><span class="badge badge-secondary">Edit</span></a>
-                                                <a href="#"><span class="badge badge-danger">X</span></a>
+                                                <a href="{{route('admin.frontend.slider.delete',$slider->id)}}"><span class="badge badge-danger">X</span></a>
                                             </td>
                                         </tr>
                                         @endforeach

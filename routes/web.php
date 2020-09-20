@@ -13,10 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/','FrontendController@welcome')->name('welcome');
 Route::get('/products/{productName}/{id}','FrontendController@productDetails')->name('product');
 
-Auth::routes();
+Route::post('/add-to-cart/{id}','CartController@store')->name('add.cart');
+Route::get('/product/cart/show','CartController@showcart')->name('show.cart');
+Route::get('/product/cart/remove/{id}','CartController@remove')->name('remove.cart');
+
+
 
 
 

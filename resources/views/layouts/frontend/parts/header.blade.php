@@ -21,7 +21,7 @@
                 <a href="#"><i class="fas fa-heart"></i></a>
             </div>
             <div class="home-icon">
-                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+            <a class="text-dark text-decoration-none" href="{{route('show.cart')}}"><i class="fas fa-shopping-bag"></i></a>
             </div>
             <div class="home-icon">
                 <i class="fas fa-user"></i>
@@ -48,7 +48,7 @@
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a class="font-weight-bold" href="#">Men</a></li>
+                        <li><a class="font-weight-bold" href="{{'/'}}">Home</a></li>
                             <li><a class="font-weight-bold" href="#">gaming</a>
                                 <div class="mega-menu mega-full">
                                     <div class="container">
@@ -129,7 +129,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a class="font-weight-bold" href="">Kids</a></li>
+                            <li><a class="font-weight-bold" href="#">Kids</a></li>
                             <li class="static"><a href="#">Sports</a>
                                 <div class="mega-menu mega-full">
                                     <div class="container">
@@ -212,8 +212,8 @@
                             </li>
                             <li><a href="#">Brands</a></li>
                             <li><a href="#">Release Dates</a></li>
-                            <li><a href="shop_page.html">Shop Page</a></li>
-                            <li><a href="product-detailse.html">Prodcts details</a></li>
+                            <li><a href="#">Shop Page</a></li>
+                            <li><a href="#">Prodcts details</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -225,11 +225,13 @@
                                 search
                             </span>
                         </div>
+                    <a href="{{route('show.cart')}}" class="text-dark text-decoration-none" >
                         <div class="cart">
                             <span class="material-icons">
                                 shopping_bag
                             </span>
                         </div>
+                    </a>
                     </div>
                 </div>
             </div>

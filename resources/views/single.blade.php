@@ -92,6 +92,8 @@
                           </div>
                       </div>
                       <div class="col-xl-5">
+                        <form  action="{{route('add.cart',$prd->id)}}" method="post">
+                            @csrf
                           <div class="shop-product-details">
                           <div class="short-description">
                               <p>{{$prd->short_description}}</p>
@@ -123,10 +125,14 @@
                                   <h6>SELECT SIZE</h6>
                                   <div class="space-gap15"></div>
                                   <div class="sizes">
-                                    @foreach(json_decode($prd->prdVariants->variants_attribute) as $product)
-                                    <div id="vriantsss" class="sizes-btn">{{$product}}</div>
+                                    @foreach(json_decode($prd->prdVariants->variants_attribute) as $size)
+                                    <label>
+                                        <input type="radio" name="variants" value="{{$size}}" class="inputecheck">
+                                        <div id="vriantsss" class="sizes-btn">{{$size}}</div>
+                                    </label>
                                     @endforeach
                                   </div>
+
                               </div>
                               <div class="space-gap15"></div>
                               <div class="row d-flex">
@@ -164,13 +170,13 @@
                               <div class="qty-cart-btn-area">
                                   <div class="qty">
                                       <span class="decrease-btn">-</span>
-                                    <span class="qty-value font-weight-bold"> <input value="1"></span>
+                                    <span class="qty-value font-weight-bold"> <input name="qnty" value="1"></span>
                                       <span class="increase-btn">+</span>
                                   </div>
-                                  <div class="add-product-btn">Add to Cart</div>
+                                  <input type="submit" value="Add to Cart" class="add-product-btn">
                               </div>
-
                           </div>
+                        </form>
                       </div>
                   </div>
                   <div class="space-gap"></div>

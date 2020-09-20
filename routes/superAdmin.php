@@ -58,5 +58,6 @@ route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::get('/frontend/slider/edit/{id}','FrontendController@show')->name('frontend.slider.edit');
 
     Route::post('/frontend/slider/edit/{id}','FrontendController@update')->name('frontend.slider.update');
+    Route::get('/frontend/slider/delete/{id}','FrontendController@delete')->name('frontend.slider.delete');
 
 });

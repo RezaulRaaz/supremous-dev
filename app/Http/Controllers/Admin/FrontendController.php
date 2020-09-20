@@ -21,6 +21,15 @@ class FrontendController extends Controller
         return view('admin/pages/frontend/Home/editSlider',compact('sliders','singleSlider'));
     }
 
+    public function delete($id){
+        $delete=Slider::where("id",$id)->first();
+        // delete old image
+        if (File::exists(public_path('/images/slider/'.$delete->image)))
+        {
+            File::delete(public_path('/images/slider/'.$delete->image));
+        }
+        return redirect()->back();
+    }
     public function update(Request $request,$id){
         $slider= Slider::find($id);
         $image=$request->file('image');

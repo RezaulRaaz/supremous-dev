@@ -1,20 +1,16 @@
     <!-- mobile slider -->
     <div id="carouselExampleIndicators" class="carousel mobile-slider slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            @foreach($sliders as $key=>$slider)
+                 <li data-target="#carouselExampleIndicators" data-slide-to="{{$key}}" class="{{ $key == 0 ? ' active' : '' }}"></li>
+            @endforeach
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-            <img class="d-block w-100" src="{{asset('frontend/images/m-slider.jpg')}}" alt="First slide">
+            @foreach($sliders as $key=>$slider)
+            <div class="carousel-item {{ $key == 0 ? ' active' : '' }}">
+            <img class="d-block w-100" src="{{'images/slider/'.$slider->image}}" alt="First slide">
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="{{asset('frontend/images/m-slider-2.jpg')}}" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="{{asset('frontend/images/m-slider-3.jpg')}}" alt="Third slide">
-            </div>
+            @endforeach
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
