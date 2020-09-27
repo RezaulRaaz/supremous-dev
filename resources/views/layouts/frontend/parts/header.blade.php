@@ -1,4 +1,8 @@
-    <!-- mobile version top bar section -->
+@php
+$products =Cart::content();
+@endphp
+
+   <!-- mobile version top bar section -->
     <div class="mobile-menu-top-bar mobile-top-grid">
         <div class="mobile-logo">
             <a href="{{url('/')}}"><img src="{{logo()}}" alt="Logo"></a>
@@ -21,7 +25,8 @@
                 <a href="#"><i class="fas fa-heart"></i></a>
             </div>
             <div class="home-icon">
-            <a class="text-dark text-decoration-none" href="{{route('show.cart')}}"><i class="fas fa-shopping-bag"></i></a>
+                 <a class="text-dark text-decoration-none" href="{{route('show.cart')}}"><i class="fas fa-shopping-bag"></i></a>
+
             </div>
             <div class="home-icon">
                 <i class="fas fa-user"></i>
@@ -48,7 +53,7 @@
                 <div class="menu">
                     <nav>
                         <ul>
-                        <li><a class="font-weight-bold" href="{{'/'}}">Home</a></li>
+                        <li><a class="font-weight-bold active" href="{{'/'}}">Home</a></li>
                             <li><a class="font-weight-bold" href="#">gaming</a>
                                 <div class="mega-menu mega-full">
                                     <div class="container">
@@ -210,9 +215,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="#">Brands</a></li>
-                            <li><a href="#">Release Dates</a></li>
-                            <li><a href="#">Shop Page</a></li>
                             <li><a href="#">Prodcts details</a></li>
                         </ul>
                     </nav>
@@ -226,10 +228,13 @@
                             </span>
                         </div>
                     <a href="{{route('show.cart')}}" class="text-dark text-decoration-none" >
-                        <div class="cart">
-                            <span class="material-icons">
-                                shopping_bag
-                            </span>
+                        <div class="cart-icon">
+                            <span class="material-icons">shopping_bag</span>
+                            @if ($products->count()!=0)
+                            <div class="cart-icon-badge">
+                              {{$products->count()}}
+                            </div>
+                            @endif
                         </div>
                     </a>
                     </div>

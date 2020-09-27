@@ -47,6 +47,10 @@
     align-items: center;
     gap: 15px;
 }
+.home-icon{
+    width: 30px;
+    text-align: center;
+}
 .home-icon a{
     color: #000;
 }

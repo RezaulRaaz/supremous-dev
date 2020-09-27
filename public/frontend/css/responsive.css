@@ -226,4 +226,10 @@
     .cart-total p{
             font-size:14px
     }
+    .carts{
+        height: auto;
+    }
+    .product-cart-details input, select {
+        width: 80px;
+    }
 }

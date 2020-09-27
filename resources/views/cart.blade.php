@@ -14,6 +14,7 @@
     </div>
 </div>
 <div class="space-gap50"></div>
+@if ($products->count()!=0)
 <div class="shop-page-title">
     <div class="container">
             <h4 class="text-left h2 font-weight-bold">Your Bag</h4>
@@ -24,11 +25,9 @@
 <div class="space-gap50"></div>
 <div class="cart-page">
     <div class="container">
-
         <div class="row">
             <div class="col-lg-8">
                 <div class="cart-list">
-                    {{-- {{dd($products)}} --}}
                     @foreach($products as $product)
                     <div class="carts d-flex">
                         <div class="product-cart-img">
@@ -36,10 +35,9 @@
                         </div>
                         <div class="product-cart-details">
                             <div class="product-cart-top">
-                            <p>{{$product->name}}</p>
-                                <div class="space-gap15"></div>
+                            <h5>{{$product->name}}</h5>
                                 <div class="product-cart-size">
-                                    <div class="size-select">
+                                    <div class="d-flex justify-content-between pt-2">
                                        <span class="h6">Size:</span>
                                        <span>
                                            <select name="" id="">
@@ -49,21 +47,22 @@
                                                <option value="">M 11 / W 12</option>
                                            </select>
                                        </span>
-                                       &nbsp;
-                                      <div class="qnty-cart-list d-flex">
-                                        <span class="h6">Quantity:</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between pt-2">
+                                        <span class="h6">Quantity</span>
                                         <span>
                                              <input type="text" value="{{$product->qty}}" name="" id="">
                                         </span>
                                       </div>
-                                    </div>
                                 </div>
-                                <div class="space-gap15"></div>
-                               <div class="cart-total">
-                                <p>Price: {{currency().' '.$product->price}}</p>
-                                &nbsp;
-                                &nbsp;
-                                <p><strong>Total: {{ currency().$product->subtotal}}</strong></p>
+                              <div class="cart-prd-price d-flex justify-content-between pt-2">
+                                  <span>Price</span>
+                                  <span><input type="text" disabled  style="color:#000000;" readonly value="{{currency().$product->price}}"/></span>
+                              </div>
+                               <div class="cart-total  d-flex justify-content-between pt-2">
+                                <p><strong>Total</strong></p>
+                                <p><strong><input type="text" style="color:#000000;font-weight:bold" disabled  readonly value="{{currency().$product->subtotal}}"/></strong></p>
+
                                </div>
                             </div>
                         </div>
@@ -72,29 +71,29 @@
                     @endforeach
                 </div>
                 <div class="col-lg-12">
-                    <div class="d-flex flex-wrap justify-content-end mb-3">
+                    <div class="d-flex flex-wrap justify-content-end mt-3 mb-3">
                     <a href="{{url('/')}}"> <div class="add-product-btn">Continue Shopping</div></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="order-summary mb-3">
-                    <div class="inner-summary">
-                        <h5 class="inner-summary-title">Order Summary</h5>
+                    <div class="inner-summary py-3">
+                        <h5 class="inner-summary-title px-3">Order Summary</h5>
                         <div class="summary-body">
-                          <div class="contianer d-flex justify-content-between pt-2">
+                          <div class="d-flex justify-content-between py-1 px-3 bg-whitist">
                             <span class="summary-content-body">{{$products->count()}} items</span>
                             <span class="summary-content-body">{{currency().$total}}</span>
                           </div>
-                          <div class="contianer d-flex justify-content-between pt-2">
+                          <div class="d-flex justify-content-between py-1 px-3">
                             <span class="summary-content-body">Delivery</span>
                             <span class="summary-content-body">Free</span>
                           </div>
-                          <div class="contianer d-flex justify-content-between pt-2">
+                          <div class=" d-flex justify-content-between bg-whitist py-1 px-3">
                             <span class="summary-content-body">Sales Tax</span>
                             <span class="summary-content-body">--</span>
                           </div>
-                          <div class="contianer d-flex justify-content-between pt-2">
+                          <div class=" d-flex justify-content-between pt-2 px-3">
                             <span class="summary-content-body"><strong>Total</strong></span>
                             <span class="summary-content-body"><strong>{{currency().$total}}</strong></span>
                           </div>
@@ -102,12 +101,21 @@
                     </div>
                 </div>
                 <div class="d-flex flex-wrap justify-content-end">
-                    <div class="add-product-btn">Checkout</div>
+                    <div class="add-product-btn" >Checkout</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@else
+<div class="shop-page-title">
+    <div class="container text-center">
+            <h4 class=" h2 font-weight-bold">Your Bag is Empty</h4>
+            <h3><a href="{{url('/')}}">Let's Start Shopping</a></h3>
+            <div class="space-gap15"></div>
+    </div>
+</div>
+@endif
 
 <div class="space-gap"></div>
 @endsection

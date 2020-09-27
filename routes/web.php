@@ -26,8 +26,6 @@ Route::get('/product/cart/remove/{id}','CartController@remove')->name('remove.ca
 
 
 
-
-
 route::group(['as'=>'customar.','prefix'=>'customar','namespace'=>'Customar','middleware' => ['auth','customar']], function (){
     Route::get('/dashboard', 'CustomarController@index')->name('dashboard');
 });

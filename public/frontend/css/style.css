@@ -28,6 +28,9 @@ body{
 .mobile-menu-top-bar{
     display: none;
 }
+.bg-whitist{
+    background-color: rgba(240, 235, 235, 0.867);
+}
 /* owl-carusel */
 .owl-carousel .owl-nav div {
 	background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0;
@@ -93,6 +96,9 @@ header{
 .logo-section img{
     width: 120px;
 }
+.cart-icon{
+    position: relative;
+}
 .search-cart-wrap .search{
  background-color: #EBEDEE;
 }
@@ -110,13 +116,28 @@ header{
 .search .material-icons{
     cursor: pointer;
 }
-.cart .material-icons{
+.cart-icon .material-icons{
     display: flex;
     align-items: center;
     padding: 5px 10px;
     cursor: pointer;
-}
 
+}
+.cart-icon-badge{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 18px;
+    border-radius:50%;
+    height: 18px;
+    font-size:12px;
+    font-weight:700;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    background-color: rgb(1, 106, 155);
+}
 /* mobile slider */
 .mobile-slider{
     display: none;
@@ -585,13 +606,17 @@ label input[type="radio"]:checked ~ #vriantsss{
 /* cart page design css */
 
 .carts {
-    margin-bottom: 25px;
+    margin-top: 1rem;
+    padding:10px;
     border-radius: 5px;
     width: 100%;
     position: relative;
-    height: 170px;
+    height: 194px;
     overflow: hidden;
-    border: 1px solid #777272;
+    border: 1px solid #dddd;
+}
+.carts:first-child{
+    margin-top:0;
 }
 .remove-cart{
     position: absolute;
@@ -609,15 +634,21 @@ label input[type="radio"]:checked ~ #vriantsss{
  max-width: 40%;
 }
 .product-cart-img img{
-    width: 170px;
-    height: 170px
+    width: 177px;
+    height: 165px
 }
 .product-cart-details{
-    padding: 20px;
-    width: 60%;
+    padding: 0 20px;
+    width: 70%;
 }
-.product-cart-top p{
-    font-size: 18px;
+.product-cart-details input,select{
+    width: 120px;
+    text-align:center;
+}
+.product-cart-top > h5{
+    margin: 0;
+    padding:0;
+    font-weight:bold;
 }
 .size-select{
     display:flex;
@@ -637,8 +668,8 @@ label input[type="radio"]:checked ~ #vriantsss{
 /* order summery */
 .order-summary
 {
-    padding:15px;
     border: 1px solid #dddd;
+    border-radius:5px;
 }
 .inner-summary-title{
     font-weight:bold;

@@ -173,7 +173,7 @@
                                     <span class="qty-value font-weight-bold"> <input name="qnty" value="1"></span>
                                       <span class="increase-btn">+</span>
                                   </div>
-                                  <input type="submit" value="Add to Cart" class="add-product-btn">
+                                  <input type="submit" value="Add to Bag" class="add-product-btn">
                               </div>
                           </div>
                         </form>
